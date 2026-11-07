@@ -405,49 +405,34 @@ input[id$="-11"]:checked ~ .controls .n11 {
 }
 
 /* Лічильники слайдів 1..11 */
-#s1-1:checked ~ .controls .slider-counter::after,
-#s2-1:checked ~ .controls .slider-counter::after,
-#s3-1:checked ~ .controls .slider-counter::after { content: "1 / 11"; }
+/* ==========================================
+   ЛІЧИЛЬНИКИ СЛАЙДІВ
+   ========================================== */
 
-#s1-2:checked ~ .controls .slider-counter::after,
-#s2-2:checked ~ .controls .slider-counter::after,
-#s3-2:checked ~ .controls .slider-counter::after { content: "2 / 11"; }
+/* Лічильники для Ячейки 1 (1 / 11 .. 11 / 11) */
+#s1-1:checked ~ .controls .slider-counter::after { content: "1 / 11"; }
+#s1-2:checked ~ .controls .slider-counter::after { content: "2 / 11"; }
+#s1-3:checked ~ .controls .slider-counter::after { content: "3 / 11"; }
+#s1-4:checked ~ .controls .slider-counter::after { content: "4 / 11"; }
+#s1-5:checked ~ .controls .slider-counter::after { content: "5 / 11"; }
+#s1-6:checked ~ .controls .slider-counter::after { content: "6 / 11"; }
+#s1-7:checked ~ .controls .slider-counter::after { content: "7 / 11"; }
+#s1-8:checked ~ .controls .slider-counter::after { content: "8 / 11"; }
+#s1-9:checked ~ .controls .slider-counter::after { content: "9 / 11"; }
+#s1-10:checked ~ .controls .slider-counter::after { content: "10 / 11"; }
+#s1-11:checked ~ .controls .slider-counter::after { content: "11 / 11"; }
 
-#s1-3:checked ~ .controls .slider-counter::after,
-#s2-3:checked ~ .controls .slider-counter::after,
-#s3-3:checked ~ .controls .slider-counter::after { content: "3 / 11"; }
+/* Лічильники для Ячейки 2 (1 / 4 .. 4 / 4) */
+#s2-1:checked ~ .controls .slider-counter::after { content: "1 / 4"; }
+#s2-2:checked ~ .controls .slider-counter::after { content: "2 / 4"; }
+#s2-3:checked ~ .controls .slider-counter::after { content: "3 / 4"; }
+#s2-4:checked ~ .controls .slider-counter::after { content: "4 / 4"; }
 
-#s1-4:checked ~ .controls .slider-counter::after,
-#s2-4:checked ~ .controls .slider-counter::after,
-#s3-4:checked ~ .controls .slider-counter::after { content: "4 / 11"; }
-
-#s1-5:checked ~ .controls .slider-counter::after,
-#s2-5:checked ~ .controls .slider-counter::after,
-#s3-5:checked ~ .controls .slider-counter::after { content: "5 / 11"; }
-
-#s1-6:checked ~ .controls .slider-counter::after,
-#s2-6:checked ~ .controls .slider-counter::after,
-#s3-6:checked ~ .controls .slider-counter::after { content: "6 / 11"; }
-
-#s1-7:checked ~ .controls .slider-counter::after,
-#s2-7:checked ~ .controls .slider-counter::after,
-#s3-7:checked ~ .controls .slider-counter::after { content: "7 / 11"; }
-
-#s1-8:checked ~ .controls .slider-counter::after,
-#s2-8:checked ~ .controls .slider-counter::after,
-#s3-8:checked ~ .controls .slider-counter::after { content: "8 / 11"; }
-
-#s1-9:checked ~ .controls .slider-counter::after,
-#s2-9:checked ~ .controls .slider-counter::after,
-#s3-9:checked ~ .controls .slider-counter::after { content: "9 / 11"; }
-
-#s1-10:checked ~ .controls .slider-counter::after,
-#s2-10:checked ~ .controls .slider-counter::after,
-#s3-10:checked ~ .controls .slider-counter::after { content: "10 / 11"; }
-
-#s1-11:checked ~ .controls .slider-counter::after,
-#s2-11:checked ~ .controls .slider-counter::after,
-#s3-11:checked ~ .controls .slider-counter::after { content: "11 / 11"; }
+/* Лічильники для Ячейки 3 (1 / 4 .. 4 / 4) */
+#s3-1:checked ~ .controls .slider-counter::after { content: "1 / 4"; }
+#s3-2:checked ~ .controls .slider-counter::after { content: "2 / 4"; }
+#s3-3:checked ~ .controls .slider-counter::after { content: "3 / 4"; }
+#s3-4:checked ~ .controls .slider-counter::after { content: "4 / 4"; }
 
 /* ==========================================
    4. ДЕТАЛІ ТА НАВІГАЦІЯ
