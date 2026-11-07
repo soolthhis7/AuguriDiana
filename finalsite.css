@@ -293,7 +293,7 @@ body {
 
 .credits-window.rolling .credits-scroll {
   opacity: 1;
-  animation: rollCredits 60s linear infinite;
+  animation: rollCredits 65s linear infinite;
   animation-play-state: running;
 }
 
@@ -728,7 +728,7 @@ input[id$="-5"]:checked ~ .controls .n5 {
   user-select: none;
 }
 
-.nav-btn-link:hover {
+.nav-btn-link:hover:not(:disabled) {
   background-color: #ff4757;
   color: #ffffff !important;
   border-color: #ff4757;
@@ -736,7 +736,7 @@ input[id$="-5"]:checked ~ .controls .n5 {
   box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
 }
 
-.nav-btn-link:active {
+.nav-btn-link:active:not(:disabled) {
   transform: translateY(-1px) scale(0.97);
   background-color: #e03847;
   box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
@@ -838,8 +838,19 @@ input[id$="-5"]:checked ~ .controls .n5 {
   padding: 12px 36px;
 }
 
-.rating-btn-confirm:hover {
+.rating-btn-confirm:hover:not(:disabled) {
   background-color: #ff6b81;
+}
+
+/* Стилі для неактивної кнопки при значенні 0 */
+.rating-btn-confirm:disabled {
+  background-color: #26262a !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+  opacity: 0.6;
 }
 
 .rating-feedback {
