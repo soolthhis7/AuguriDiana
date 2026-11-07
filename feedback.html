@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Зворотний зв'язок - SLTh7</title>
   <link rel="stylesheet" href="stylegift.css">
-  <link rel="stylesheet" href="feedback.css">
   <style>
     .feedback-container {
       width: 100%;
@@ -25,6 +24,10 @@
       width: 100%;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
       text-align: center;
+      transition: border-color 0.4s ease;
+    }
+    .feedback-card-box:hover {
+      border-color: rgba(255, 71, 87, 0.3);
     }
     .feedback-title {
       font-size: 2.2rem;
@@ -71,6 +74,31 @@
       resize: vertical;
       min-height: 120px;
     }
+    .submit-feedback-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #ff4757, #ff6b81);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.15rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    .submit-feedback-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 71, 87, 0.6);
+      background: linear-gradient(135deg, #ff6b81, #ff4757);
+    }
+    .submit-feedback-btn:disabled {
+      background: #444;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
   </style>
 </head>
 <body>
@@ -84,7 +112,8 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="gift.html" class="nav-logo">
-        <img src="1789593681100(1).png" alt="SLTh7 Logo">
+        <!-- Замінено посилання на Discord на локальний шлях. Переконайся, що файл лежить у папці img/logo.png -->
+        <img src="img/logo.png" alt="SLTh7 Logo">
       </a>
 
       <!-- Кнопка мобільного меню (гамбургер) -->
@@ -124,7 +153,8 @@
           <textarea id="userMessage" class="form-textarea" placeholder="Напиши свої враження..." required></textarea>
         </div>
 
-        <button type="submit" id="submitBtn" class="confirm-btn">Надіслати фідбек 🚀</button>
+        <!-- Виправлено клас кнопки відповідно до CSS -->
+        <button type="submit" id="submitBtn" class="submit-feedback-btn">Надіслати фідбек 🚀</button>
       </form>
 
       <div id="feedbackSuccess" class="final-success-message" style="display: none;">
