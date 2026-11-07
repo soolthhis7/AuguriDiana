@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Access — Closed Party</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="party.css">
+    <style>
+        /* Точне позиціонування та фіксація елементів, щоб нічого не рушилось */
+        .input-field {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        /* Робимо іконку у полі вводу інтерактивною кнопкою підтвердження */
+        .verify-icon-btn {
+            position: absolute;
+            right: 5px;
+            bottom: 8px;
+            background: transparent;
+            border: none;
+            color: #ffb6c1;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.2s ease;
+            outline: none;
+            padding: 2px 5px;
+        }
+        .verify-icon-btn:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        /* Фіксований блок для повідомлень статусу */
+        .status-message-container {
+            height: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-error {
+            display: none;
+            color: #ff4757;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+        }
+        .status-error.show {
+            display: block;
+        }
+
+        .status-success {
+            display: none;
+            color: #2ed573;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+        }
+        .status-success.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card" id="mainCard">
+        <div class="form-side">
+            <div style="text-align: center; margin-bottom: 10px;">
+                <i class="fas fa-glass-cheers" style="font-size: 2rem; color: #ffb6c1; filter: drop-shadow(0 0 8px rgba(255,182,193,0.5));"></i>
+            </div>
+            
+            <h1 style="margin-bottom: 6px; font-size: 1.4rem;">VIP Access "Halloween-Firemythic"</h1>
+            
+            <!-- Блок тексту -->
+            <p class="welcome-text" style="text-align: center; margin-bottom: 15px; font-size: 0.85rem;">
+                Ласкаво просимо на закриту<br>вечірку <strong>Neon Afterdark</strong> 🍸<br>
+                <span class="date-subtext" style="font-size: 11px;">Введіть секретний VIP-пропуск для доступу</span>
+            </p>
+
+            <!-- Поле вводу VIP пропуску із вбудованою кнопкою-іконкою -->
+            <div class="input-field" id="vipField">
+                <label>VIP Pass Code</label>
+                <input type="text" id="vipPass" placeholder="Введіть код пропуску" autocomplete="off">
+                <button type="button" class="verify-icon-btn" id="verifyIconBtn" title="Підтвердити пропуск">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <!-- Фіксований простір для повідомлень -->
+            <div class="status-message-container">
+                <small class="status-error" id="vipError">Пропуск не правильний або недіючий!</small>
+                <small class="status-success" id="vipSuccess">Пропуск правильний! Доступ дозволено.</small>
+            </div>
+
+            <!-- Дві кнопки: Sign Up та Login (з посиланнями href та smooth-link) -->
+            <div class="btn-group" style="margin-top: 5px;">
+                <a href="login.html" class="action-btn smooth-link disabled" id="signupBtn">Sign Up</a>
+                <a href="signup.html" class="action-btn smooth-link disabled" id="loginBtn">Login</a>
+            </div>
+            
+            <p class="footer-text" style="margin-top: 15px; font-size: 0.8rem;">
+                Приватна подія • Вхід лише за запрошеннями
+            </p>
+        </div>
+
+        <div class="image-side">
+            <div class="image-container">
+                <img src="https://s.widget-club.com/images/YyiR86zpwIMIfrCZoSs4ulVD9RF3/392fd542d20d8c39aa20ab1d192e0026/MXmLQq5SsG08nT7NcbFu.jpg?q=70&w=500" alt="VIP Party">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Кнопка та Вискакуюче Поле Адміна -->
+    <div class="admin-wrapper">
+        <button id="adminBtn" class="admin-btn"><i class="fas fa-user-shield"></i> Admin</button>
+        <div id="adminModal" class="admin-popup">
+            <div class="admin-popup-header">
+                <span><i class="fas fa-key"></i> Admin Code</span>
+                <button id="closeAdminModal" class="close-admin-btn">&times;</button>
+            </div>
+            <div class="admin-input-group">
+                <input type="password" id="adminCodeInput" placeholder="Введіть код">
+                <button id="submitAdminCode" class="admin-submit-btn"><i class="fas fa-arrow-right"></i></button>
+            </div>
+            <small id="adminError" class="admin-error-text">Невірний код!</small>
+        </div>
+    </div>
+
+    <script>
+    const mainCard = document.getElementById('mainCard');
+
+    // Плавна поява сторінки (Page Load)
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            mainCard.classList.add('page-loaded');
+        }, 50);
+    });
+
+    const vipPass = document.getElementById('vipPass');
+    const vipField = document.getElementById('vipField');
+    const vipError = document.getElementById('vipError');
+    const vipSuccess = document.getElementById('vipSuccess');
+    const verifyIconBtn = document.getElementById('verifyIconBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginBtn = document.getElementById('loginBtn');
+
+    // Секретний VIP-пропуск
+    const SECRET_VIP_PASS = "SLTPARTY2026";
+
+    function checkVipPass() {
+        const val = vipPass.value.trim();
+        const isValid = (val.toUpperCase() === SECRET_VIP_PASS) && !/\s/.test(vipPass.value);
+
+        if (isValid) {
+            vipField.classList.remove('error-input');
+            vipField.classList.add('success-input');
+            vipError.classList.remove('show');
+            vipSuccess.classList.add('show');
+
+            // Активація кнопок
+            signupBtn.classList.remove('disabled');
+            loginBtn.classList.remove('disabled');
+        } else {
+            vipField.classList.remove('success-input');
+            vipField.classList.add('error-input');
+            vipSuccess.classList.remove('show');
+            vipError.classList.add('show');
+
+            // Деактивація кнопок
+            signupBtn.classList.add('disabled');
+            loginBtn.classList.add('disabled');
+        }
+    }
+
+    // Перевірка при кліку на вбудовану кнопку-стрілочку
+    verifyIconBtn.addEventListener('click', checkVipPass);
+
+    // Перевірка при натисканні Enter
+    vipPass.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            checkVipPass();
+        }
+    });
+
+    // Плавний перехід між сторінками при кліку на активні кнопки[cite: 1]
+    document.querySelectorAll('.smooth-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Перевіряємо, чи кнопка не є заблокованою (disabled)
+            if (this.classList.contains('disabled')) {
+                e.preventDefault();
+                return;
+            }
+            
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            
+            // Зберігаємо код пропуску в localStorage
+            localStorage.setItem('vipPassUsed', vipPass.value.trim());
+
+            // Запускаємо анімацію виходу[cite: 1]
+            mainCard.classList.remove('page-loaded');
+            mainCard.classList.add('page-exit');
+            
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 400); // 400ms — повний збіг з оригінальним таймаутом[cite: 1]
+        });
+    });
+
+    // Логіка Admin Pop-up[cite: 1]
+    const adminBtn = document.getElementById('adminBtn');
+    const adminModal = document.getElementById('adminModal');
+    const closeAdminModal = document.getElementById('closeAdminModal');
+    const submitAdminCode = document.getElementById('submitAdminCode');
+    const adminCodeInput = document.getElementById('adminCodeInput');
+    const adminError = document.getElementById('adminError');
+
+    const SECRET_ADMIN_CODE = "08112010";
+
+    adminBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        adminModal.classList.toggle('show');
+        if (adminModal.classList.contains('show')) {
+            adminCodeInput.focus();
+        }
+    });
+
+    closeAdminModal.addEventListener('click', () => {
+        adminModal.classList.remove('show');
+        adminError.classList.remove('show');
+        adminCodeInput.value = '';
+    });
+
+    function verifyAdminCode() {
+        if (adminCodeInput.value === SECRET_ADMIN_CODE) {
+            adminError.classList.remove('show');
+            mainCard.classList.remove('page-loaded');
+            mainCard.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = 'index0.html';
+            }, 400);
+        } else {
+            adminError.classList.add('show');
+        }
+    }
+
+    submitAdminCode.addEventListener('click', verifyAdminCode);
+
+    adminCodeInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            verifyAdminCode();
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!adminModal.contains(e.target) && !adminBtn.contains(e.target)) {
+            adminModal.classList.remove('show');
+            adminError.classList.remove('show');
+            adminCodeInput.value = '';
+        }
+    });
+    </script>
+</body>
+</html>

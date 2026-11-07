@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Таємниче запрошення для Діани</title>
+  <!-- Рукописний шрифт із підтримкою кирилиці -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #050403;
+      background-image: 
+        radial-gradient(circle at 50% 50%, #120e0b 0%, #030202 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    .hint {
+      margin-bottom: 25px;
+      font-size: 0.85rem;
+      color: #8c7660;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: opacity 0.3s;
+      user-select: none;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+    }
+
+    /* Контейнер сцени */
+    .scene {
+      perspective: 1400px;
+      width: 340px;
+      height: 240px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .envelope-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    /* Задня стінка конверта */
+    .envelope-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 12% 88%, rgba(65, 12, 12, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 88% 12%, rgba(65, 12, 12, 0.4) 0%, transparent 45%),
+        radial-gradient(circle at 12% 12%, rgba(15, 7, 3, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 88% 88%, rgba(15, 7, 3, 0.8) 0%, transparent 50%),
+        #211208;
+      border-radius: 3px;
+      box-shadow: inset 0 0 35px rgba(0,0,0,0.95), 0 25px 50px rgba(0, 0, 0, 0.95);
+      border: 1px solid #0d0603;
+      clip-path: polygon(1% 2%, 98% 0%, 100% 97%, 3% 99%, 0% 95%);
+    }
+
+    /* Передні клапани конверта */
+    .envelope-flaps {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .flap-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 170px solid #231208;
+      border-top: 120px solid transparent;
+      border-bottom: 120px solid transparent;
+      filter: drop-shadow(3px 0 6px rgba(0,0,0,0.8));
+    }
+
+    .flap-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-right: 170px solid #1e0e06;
+      border-top: 120px solid transparent;
+      border-bottom: 120px solid transparent;
+      filter: drop-shadow(-3px 0 6px rgba(0,0,0,0.8));
+    }
+
+    .flap-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-bottom: 135px solid #2a160a;
+      border-left: 170px solid transparent;
+      border-right: 170px solid transparent;
+      filter: drop-shadow(0 -4px 7px rgba(0,0,0,0.9));
+    }
+
+    /* Верхній клапан-кришка */
+    .envelope-top-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 135px;
+      transform-origin: top center;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+      z-index: 5;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.95));
+    }
+
+    .scene.open .envelope-top-flap {
+      transform: rotateX(180deg);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      z-index: 1;
+    }
+
+    .envelope-top-flap svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Контейнер вильоту листа */
+    .letter-wrapper {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      width: 320px;
+      height: 220px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(0) scale(0.95);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s, 
+                  opacity 0.3s ease 0.3s,
+                  z-index 0.1s linear 0.5s;
+      perspective: 1200px;
+    }
+
+    .scene.open .letter-wrapper {
+      opacity: 1;
+      transform: translateY(-180px) scale(1);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, 
+                  opacity 0.3s ease 0.3s,
+                  z-index 0.1s linear 0.3s;
+      z-index: 10;
+    }
+
+    /* 3D-Flipper для перевороту */
+    .full-letter-flipper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .scene.open .full-letter-flipper {
+      height: 500px;
+      width: 340px;
+      transform: translateX(-10px);
+      box-shadow: 
+        0 35px 70px rgba(0, 0, 0, 0.98), 
+        0 15px 30px rgba(0, 0, 0, 0.9),
+        0 0 35px rgba(255, 140, 0, 0.25);
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s,
+                  width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s,
+                  transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s,
+                  box-shadow 0.5s ease 0.8s;
+    }
+
+    .scene.open .letter-wrapper.flipped .full-letter-flipper {
+      transform: translateX(-10px) rotateY(180deg);
+    }
+
+    /* Стилі паперу листа */
+    .letter-face {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      box-shadow: inset 0 0 40px rgba(5, 2, 1, 0.75);
+      overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+
+      clip-path: polygon(
+        3% 1%, 15% 0%, 30% 1.5%, 48% 0%, 65% 1%, 82% 0%, 97% 1.5%, 100% 5%,
+        97% 20%, 99% 35%, 96% 50%, 99% 66%, 96% 80%, 99% 93%, 97% 99%,
+        82% 97%, 68% 100%, 52% 98%, 35% 99.5%, 18% 97%, 5% 100%, 0% 95%,
+        2.5% 77%, 0% 60%, 3% 42%, 0% 25%, 2.5% 10%
+      );
+    }
+
+    .letter-front, .letter-back {
+      background: 
+        radial-gradient(ellipse at 88% 88%, rgba(85, 14, 14, 0.45) 0%, rgba(40, 6, 6, 0.25) 35%, transparent 60%),
+        radial-gradient(ellipse at 12% 12%, rgba(75, 12, 12, 0.4) 0%, rgba(35, 5, 5, 0.2) 32%, transparent 55%),
+        radial-gradient(circle at 90% 10%, rgba(15, 6, 2, 0.6) 0%, rgba(25, 10, 4, 0.25) 30%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(15, 6, 2, 0.6) 0%, rgba(25, 10, 4, 0.25) 30%, transparent 50%),
+        radial-gradient(circle at 50% 50%, #c49563 0%, #966a3d 60%, #522d14 100%);
+    }
+
+    .letter-front {
+      transform: rotateY(0deg);
+    }
+
+    .letter-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Кнопка закриття у вигляді гарбузика */
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      z-index: 30;
+      opacity: 0;
+      transition: opacity 0.3s ease 1.3s, transform 0.2s ease, filter 0.2s ease;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn svg {
+      width: 100%;
+      height: 100%;
+      fill: #3a1d0f;
+      stroke: #1a0b05;
+      stroke-width: 1.2;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+      transition: fill 0.2s ease, filter 0.2s ease;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.15) rotate(6deg);
+    }
+
+    .close-btn:hover svg {
+      fill: #d66400;
+      filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.8));
+    }
+
+    .scene.open .close-btn {
+      opacity: 0.85;
+    }
+
+    /* Стилі тексту */
+    .front-content, .back-content {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 34px 26px 24px 26px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: #23130c;
+      text-shadow: 0.5px 0.5px 1px rgba(30, 15, 8, 0.2);
+      line-height: 1.45;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      z-index: 5;
+    }
+
+    .front-content h2, .back-content h2 {
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
+      color: #1a0b05;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.15;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
+    }
+
+    .text-block {
+      width: 100%;
+      margin: 4px 0;
+    }
+
+    .text-block p {
+      margin-bottom: 8px;
+    }
+
+    .footer-ps {
+      font-size: 1.2rem;
+      color: #3d2013;
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    /* Мінімалістична кнопка під стилістику листа з ефектом перенаправлення */
+    .aesthetic-btn {
+      position: relative;
+      margin-top: 12px;
+      background: rgba(35, 16, 8, 0.88);
+      color: #e4c29a;
+      border: 1.5px solid #6b3b1a;
+      padding: 9px 24px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 8px rgba(0, 0, 0, 0.8);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      outline: none;
+    }
+
+    .aesthetic-btn:hover {
+      background: rgba(55, 24, 10, 0.98);
+      color: #ffaa1a;
+      border-color: #ff8c00;
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.5), inset 0 0 10px rgba(107, 59, 26, 0.6);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hint" id="hint">Натисніть на конверт, щоб відкрити</div>
+
+  <div class="scene" id="scene">
+    <div class="envelope-container">
+      
+      <div class="envelope-back"></div>
+      
+      <div class="envelope-flaps">
+        <div class="flap-left"></div>
+        <div class="flap-right"></div>
+        <div class="flap-bottom"></div>
+      </div>
+
+      <!-- Верхній клапан-кришка -->
+      <div class="envelope-top-flap">
+        <svg viewBox="0 0 340 135" preserveAspectRatio="none">
+          <path d="M 0 0 L 145 122 Q 170 135 195 122 L 340 0 Z" fill="#1f0d05" stroke="#0a0402" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <!-- Лист -->
+      <div class="letter-wrapper" id="letterWrapper">
+        <div class="full-letter-flipper">
+          
+          <!-- ЛИЦЬОВА ЧАСТИНА (Сторінка 1) -->
+          <div class="letter-face letter-front">
+            <!-- Кнопка закриття (Гарбузик) -->
+            <button class="close-btn" id="closeBtn" title="Закрити лист">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3c0 0-.5 1.5-1.5 2C9.5 5 8 4 6 5.5S3.5 9.5 4 12s2 7 5 8c2.5.8 4.5 0 6 0 1.5 0 3.5.8 6 0 3-1 4.5-5.5 5-8s-.5-5-2.5-6.5S14.5 5 13.5 5C12.5 4.5 12 3 12 3z"/>
+                <path d="M12 3v2" stroke-linecap="round"/>
+                <path d="M9 10l1.5 1.5L9 13M15 10l-1.5 1.5L15 13" fill="none" stroke-width="1.5"/>
+                <path d="M10 16.5c1 .5 3 .5 4 0" fill="none" stroke-width="1.2"/>
+              </svg>
+            </button>
+
+            <div class="front-content">
+              <h2>Таємниче запрошення для тебе</h2>
+
+              <div class="text-block">
+                <p style="margin-bottom: 10px; font-weight: 700; font-size: 1.55rem;">Вітаємо у темряві, мандрівнице.</p>
+                <p>Ти успішно знайшла пасхалку та розкрила секрет гарбузика. Але не переживай, тут немає страшних монстрів — ця таємнича вечірка створена лише для однієї особливої дівчини.</p>
+              </div>
+
+              <div class="footer-ps">
+                (Тисни на лист, щоб перегорнути)
+              </div>
+            </div>
+          </div>
+
+          <!-- ЗВОРОТНА ЧАСТИНА (Сторінка 2) -->
+          <div class="letter-face letter-back">
+            <!-- Кнопка закриття (Гарбузик) -->
+            <button class="close-btn" id="closeBtnBack" title="Закрити лист">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3c0 0-.5 1.5-1.5 2C9.5 5 8 4 6 5.5S3.5 9.5 4 12s2 7 5 8c2.5.8 4.5 0 6 0 1.5 0 3.5.8 6 0 3-1 4.5-5.5 5-8s-.5-5-2.5-6.5S14.5 5 13.5 5C12.5 4.5 12 3 12 3z"/>
+                <path d="M12 3v2" stroke-linecap="round"/>
+                <path d="M9 10l1.5 1.5L9 13M15 10l-1.5 1.5L15 13" fill="none" stroke-width="1.5"/>
+                <path d="M10 16.5c1 .5 3 .5 4 0" fill="none" stroke-width="1.2"/>
+              </svg>
+            </button>
+
+            <div class="back-content">
+              <h2>Головна Таємниця</h2>
+
+              <div class="text-block">
+                <p>Попереду на тебе чекають секретні та теплі події цього свята.</p>
+                <p>Ти вже за один крок від головного сюрпризу, але щоб розкрити його повністю — тобі знадобиться дещо солодке.</p>
+              </div>
+
+              <!-- Кнопка перенаправлення -->
+              <div style="width: 100%;">
+                <p style="font-size: 1.35rem; margin-top: 4px;">Тисни нижче, щоб запалити світло та дізнатися секрет:</p>
+                <button class="aesthetic-btn" id="blowCandleBtn">Задмухнути свічки</button>
+              </div>
+
+              <div class="footer-ps">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const scene = document.getElementById('scene');
+    const hint = document.getElementById('hint');
+    const letterWrapper = document.getElementById('letterWrapper');
+
+    scene.addEventListener('click', (e) => {
+      // Клік по кнопці закриття (гарбузик)
+      if (e.target.closest('.close-btn')) {
+        closeEnvelope();
+        return;
+      }
+
+      // Клік по кнопці свічок -> перенаправлення на іншу сторінку HTML
+      if (e.target.closest('#blowCandleBtn')) {
+        e.stopPropagation();
+        // Вкажіть тут потрібний файл або посилання на наступну сторінку
+        window.location.href = 'cake.html'; 
+        return;
+      }
+
+      // Відкриття або переворот листа
+      if (!scene.classList.contains('open')) {
+        scene.classList.add('open');
+        hint.textContent = "Натисніть на лист, щоб перевернути";
+      } else {
+        letterWrapper.classList.toggle('flipped');
+      }
+    });
+
+    function closeEnvelope() {
+      letterWrapper.classList.remove('flipped');
+      scene.classList.remove('open');
+      hint.textContent = "Натисніть на конверт, щоб відкрити";
+    }
+  </script>
+
+</body>
+</html>

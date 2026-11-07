@@ -1,0 +1,589 @@
+/* Плавна прокрутка сторінки */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Плаваюче повідомлення зверху сторінки */
+.toast-notification {
+  position: fixed;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 47, 70, 0.95);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(255, 71, 87, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              opacity 0.4s ease, 
+              visibility 0.4s ease;
+}
+
+.toast-notification.show {
+  top: 25px; /* Виринає зверху */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Напівпрозоре фіксоване меню */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(18, 18, 18, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  padding: 15px 0;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Коли мобільне меню відкрите, шапка плавно змінює колір і розмиття разом із випадаючим блоком */
+.navbar:has(.nav-links.active) {
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  height: 45px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Кнопка гамбургер (прихована на ПК) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Анімація гамбургера в хрестик при відкритті */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff4757;
+}
+
+/* 1. Головна секція (Hero) */
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+              url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 1000px !important;
+  width: 90% !important;
+  margin: 0 auto 30px auto !important;
+  color: #e0e0e0;
+  text-align: center;
+  white-space: normal;
+}
+
+.hero .btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #ff4757;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.hero .btn:hover {
+  background-color: #ff6b81;
+  transform: translateY(-3px);
+}
+
+/* 2. Секція вибору подарунків */
+.gifts-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  background-color: #121212;
+}
+
+.gifts-content-wrapper {
+  max-width: 1100px;
+  width: 100%;
+  text-align: center;
+}
+
+.gifts-title {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.gifts-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 40px;
+  color: #b0b0b0;
+}
+
+/* Сітка 4 в ряд */
+.gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Картка подарунка */
+.gift-card {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 30px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  height: 100%;
+
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.4s ease, 
+              background 0.4s ease, 
+              border-color 0.4s ease;
+}
+
+.gift-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 71, 87, 0.2);
+  background: #252525;
+  border-color: rgba(255, 71, 87, 0.4);
+}
+
+/* Обрана картка */
+.gift-card.active-card {
+  background: #182c22;
+  border-color: #2ed573;
+  box-shadow: 0 0 25px rgba(46, 213, 115, 0.4);
+  transform: scale(1.04);
+}
+
+.gift-card.active-card:hover {
+  transform: translateY(-5px) scale(1.07);
+  box-shadow: 0 0 30px rgba(46, 213, 115, 0.6);
+}
+
+/* Зображення подарунків */
+.gift-icon-container {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gift-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.gift-card:hover .gift-img {
+  transform: scale(1.15);
+}
+
+.gift-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: #ffffff;
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Блок ціни */
+.gift-price {
+  margin-bottom: 20px;
+  min-height: 2.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stars-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffd700;
+}
+
+/* Перемикання вартості для TG Prem */
+.toggle-price-box {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.price-default, .price-hover {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.price-default {
+  color: #ffd700;
+  opacity: 1;
+}
+
+.price-hover {
+  position: absolute;
+  color: #2ed573;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.gift-card:hover .price-default {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+.gift-card:hover .price-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Кнопка вибору */
+.select-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #ff4757;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: auto;
+}
+
+.select-btn:hover {
+  background-color: #ff6b81;
+  transform: translateY(-2px);
+}
+
+.select-btn.active {
+  background-color: #2ed573;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(46, 213, 115, 0.6);
+}
+
+.select-btn.active:hover {
+  background-color: #26af5f;
+}
+
+/* Футер */
+.footer {
+  background-color: #0d0d0d;
+  color: #888888;
+  text-align: center;
+  padding: 25px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+/* Стилі кнопки перенаправлення на gift.html */
+.final-redirect-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.final-redirect-btn {
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #ff4757, #ff6b81);
+  color: #ffffff;
+  border: none;
+  border-radius: 35px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+  transition: all 0.3s ease;
+}
+
+.final-redirect-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(255, 71, 87, 0.6);
+  background: linear-gradient(135deg, #ff6b81, #ff4757);
+}
+
+/* Стилізація сторінки finalgift.html */
+.final-wrapper {
+  min-height: 100vh;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 20px 60px 20px;
+}
+
+.final-card-box {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.final-title {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.final-subtitle {
+  color: #b0b0b0;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.summary-item {
+  background: #252525;
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+
+.gift-num {
+  background: #ff4757;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.gift-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.no-gifts {
+  color: #888;
+  font-size: 1rem;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #2ed573;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(46, 213, 115, 0.3);
+  transition: all 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #26af5f;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(46, 213, 115, 0.5);
+}
+
+.final-success-message {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(46, 213, 115, 0.1);
+  border: 1px solid #2ed573;
+  border-radius: 15px;
+  animation: fadeIn 0.5s ease;
+}
+
+.final-success-message h2 {
+  color: #2ed573;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.final-success-message p {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптивність та мобільне меню */
+@media (max-width: 1024px) {
+  .gifts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Увімкнення гамбургер-кнопки */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Випадаюче мобільне меню */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+    gap: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .gifts-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 { font-size: 2.2rem; }
+  .gifts-title { font-size: 2.1rem; }
+  .nav-links { gap: 12px; font-size: 0.85rem; }
+  .gifts-container { min-height: auto; padding: 100px 20px; }
+  .toast-notification { font-size: 0.85rem; padding: 10px 18px; white-space: normal; width: 90%; }
+}

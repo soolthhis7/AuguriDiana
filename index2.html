@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLTh7 - Персональний Сайт</title>
+  <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+
+  <!-- Напівпрозоре меню (старий стиль) -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549893053181853756/1789593681100.png?ex=6ae31023&is=6ae1bea3&hm=fe214c60a4cca672502062ecad5697c006eeda8607fe70dcc13382c2d5348283&" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index0.html">Головна</a></li>
+        <li><a href="#hero">Огляд</a></li>
+        <li><a href="#biography">Біографія</a></li>
+        <li><a href="Index1.html">Модельні відео</a></li>
+        <li><a href="#gallery">Галерея фото</a></li>
+        <li><a href="index3.html">Творчі едіти</a></li>
+        <li><a href="#details">Деталі та навігація</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. Hero -->
+  <header class="hero" id="hero">
+    <h1>Ласкаво просимо, Діано!</h1>
+    <p>«Офіційний вебпростір з атмосферною <em>галереєю модельних фотографій</em>, та детальною інформацією. <br> 
+      Гортайте <em>нижче</em>, щоб дізнатися більше.»</p>
+    <a href="#gallery" class="btn">Дивитися галерею</a>
+  </header>
+
+  <!-- 2. Біографія -->
+  <section class="content-section" id="about">
+    <h2 class="section-title">Про головну героїню</h2>
+    <div class="info-card hero-about-card">
+      <p class="about-lead">
+        Тут зібрані модельні фото 16-річної <span class="highlight-name">Діани Олексин — дівчини</span>, яка з першої секунди чіпляє в кадрі своїм стилем, крутою живою аурою. Вона класно працює на камеру, показуючи в кожному кадрі свій справжній унікальний характер.
+      </p>
+      
+      <div class="quote-box">
+        <p class="quote-text">
+          «Кожна фотографія настільки вишукана та приваблива, що вона не просто передає образ, а залітає прямо в серце. Кожен рух, погляд і емоція на цих знімках — це стовідсоткове попадання в естетику, стиль і неперевершену красу Діани.»
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Галерея (Стара сітка .three-sliders-grid + Новий плеєр на 11 фото) -->
+  <section class="content-section" id="gallery">
+    <h2 class="section-title">Галерея естетичних фотографій</h2>
+
+    <div class="three-sliders-grid">
+      
+      <!-- ЯЧЕЙКА 1 -->
+      <div class="slider-card">
+        <div class="css-slider">
+          <input type="radio" name="slider1" id="s1-1" checked>
+          <input type="radio" name="slider1" id="s1-2">
+          <input type="radio" name="slider1" id="s1-3">
+          <input type="radio" name="slider1" id="s1-4">
+          <input type="radio" name="slider1" id="s1-5">
+          <input type="radio" name="slider1" id="s1-6">
+          <input type="radio" name="slider1" id="s1-7">
+          <input type="radio" name="slider1" id="s1-8">
+          <input type="radio" name="slider1" id="s1-9">
+          <input type="radio" name="slider1" id="s1-10">
+          <input type="radio" name="slider1" id="s1-11">
+
+          <div class="slides">
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417745630896138/photo_2026-09-15_16-52-17.jpg?ex=6ae34fb9&is=6ae1fe39&hm=06276668eff71f4aa44df017d29f4e3d9b27719377d552965e7b272a7c1dcdc2&" alt="Фото 1-1"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417746029088818/photo_2026-09-15_16-52-14.jpg?ex=6ada1539&is=6ad8c3b9&hm=a337cc160d491ae3869fa5ce702d10680b6f27a34a58e2259b5a1d1b2b137323&" alt="Фото 1-2"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417746414968892/photo_2026-09-15_16-52-11.jpg?ex=6ada1539&is=6ad8c3b9&hm=67a01ef74584bc5bfbb06e2dd7d0c2671daa1cd85a4f2ae210ca8260cbc7d9a3&" alt="Фото 1-3"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417746805297212/photo_2026-09-15_16-52-07.jpg?ex=6ada1539&is=6ad8c3b9&hm=405c538d2885881ebcdd57b295b2d72df84223e37804962efdc72bbb72c640a1&" alt="Фото 1-4"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417747170070628/photo_2026-09-15_16-52-05.jpg?ex=6ada1539&is=6ad8c3b9&hm=63c489d0cdaeda4db601fe43e73f47a5ffe3454eb45b90b42f9f517fa4da856e&" alt="Фото 1-5"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417747556073502/photo_2026-09-15_16-52-02.jpg?ex=6ada1539&is=6ad8c3b9&hm=4e54fae35a7fd4cf0dc0cb11b4639c5bce7ca95b5cd7bb483a924ffd7ed6cd4f&" alt="Фото 1-6"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417747937624195/photo_2026-09-15_16-51-58.jpg?ex=6ada1539&is=6ad8c3b9&hm=b026ef0bad90694a4243d933448e5903af9965476a5f78846663dd32f4a19302&" alt="Фото 1-7"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417748352737333/photo_2026-09-15_16-51-54.jpg?ex=6ada1539&is=6ad8c3b9&hm=f209bc15e7e4b73cc0de3820cae8fcfe9d0e82956320986f2df33ad6c6f739d6&" alt="Фото 1-8"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417748700991548/photo_2026-09-15_16-51-51.jpg?ex=6ada153a&is=6ad8c3ba&hm=b6077ec5e5990003064fdd30a07c19d640479444c02b250f8f5017655a8af407&" alt="Фото 1-9"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417749103771659/photo_2026-09-15_16-51-25.jpg?ex=6ada153a&is=6ad8c3ba&hm=55939efec6e7400252a7260f3f0d0ecd59c585d253167206071deac42818aee2&" alt="Фото 1-10"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417799368310854/photo_2026-09-15_16-51-17.jpg?ex=6ada1546&is=6ad8c3c6&hm=9fb723cbff5f0077c86cd8c446a82f182724c7fe5f106c34b0dbe25098a1a55f&" alt="Фото 1-11"></div>
+          </div>
+
+          <div class="controls">
+            <div class="slider-counter"></div>
+            <div class="nav-group n1"><label for="s1-11" class="prev">&#10094;</label><label for="s1-2" class="next">&#10095;</label></div>
+            <div class="nav-group n2"><label for="s1-1" class="prev">&#10094;</label><label for="s1-3" class="next">&#10095;</label></div>
+            <div class="nav-group n3"><label for="s1-2" class="prev">&#10094;</label><label for="s1-4" class="next">&#10095;</label></div>
+            <div class="nav-group n4"><label for="s1-3" class="prev">&#10094;</label><label for="s1-5" class="next">&#10095;</label></div>
+            <div class="nav-group n5"><label for="s1-4" class="prev">&#10094;</label><label for="s1-6" class="next">&#10095;</label></div>
+            <div class="nav-group n6"><label for="s1-5" class="prev">&#10094;</label><label for="s1-7" class="next">&#10095;</label></div>
+            <div class="nav-group n7"><label for="s1-6" class="prev">&#10094;</label><label for="s1-8" class="next">&#10095;</label></div>
+            <div class="nav-group n8"><label for="s1-7" class="prev">&#10094;</label><label for="s1-9" class="next">&#10095;</label></div>
+            <div class="nav-group n9"><label for="s1-8" class="prev">&#10094;</label><label for="s1-10" class="next">&#10095;</label></div>
+            <div class="nav-group n10"><label for="s1-9" class="prev">&#10094;</label><label for="s1-11" class="next">&#10095;</label></div>
+            <div class="nav-group n11"><label for="s1-10" class="prev">&#10094;</label><label for="s1-1" class="next">&#10095;</label></div>
+          </div>
+
+          <div class="card-caption">Атмосферна Італія</div>
+        </div>
+      </div>
+
+      <!-- ЯЧЕЙКА 2 -->
+      <div class="slider-card">
+        <div class="css-slider">
+          <input type="radio" name="slider2" id="s2-1" checked>
+          <input type="radio" name="slider2" id="s2-2">
+          <input type="radio" name="slider2" id="s2-3">
+          <input type="radio" name="slider2" id="s2-4">
+          <input type="radio" name="slider2" id="s2-5">
+          <input type="radio" name="slider2" id="s2-6">
+          <input type="radio" name="slider2" id="s2-7">
+          <input type="radio" name="slider2" id="s2-8">
+          <input type="radio" name="slider2" id="s2-9">
+          <input type="radio" name="slider2" id="s2-10">
+          <input type="radio" name="slider2" id="s2-11">
+
+          <div class="slides">
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520603553177610/IMG_20261021_191201_630.jpg?ex=6ada4a36&is=6ad8f8b6&hm=4b294cce85ba4e1adc4db31dcd4c6f88d1a8decd14e7f7a337c31eefa1a10a09&" alt="Фото 2-1"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520603175559258/IMG_20261021_191202_636.jpg?ex=6ada4a36&is=6ad8f8b6&hm=78ecb1d0e33dcafba12f2e43672a8027bf22cc78c04709dcaddcde2a498bef65&" alt="Фото 2-2"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520602722439318/IMG_20261021_191203_765.jpg?ex=6ada4a35&is=6ad8f8b5&hm=dca3c35c4ce64d75331ab0eb5e28a3a99f80e6d8a15ce2d416eaa250a559b55c&" alt="Фото 2-3"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520601501900841/IMG_20261021_203832_007.jpg?ex=6ada4a35&is=6ad8f8b5&hm=2ee72c81e8158bddb20332da6c3d9c7e622015c0dff85279249c76e9a7b18249&" alt="Фото 2-4"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520602323976313/IMG_20261021_203830_843.jpg?ex=6ada4a35&is=6ad8f8b5&hm=30c2e06a3d1d25043c058fe772671ea1633d9c0e00c54a76484b3942b983ffa8&" alt="Фото 2-5"></div>
+            <div class="slide"><img src="photo6.jpg" alt="Фото 2-6"></div>
+            <div class="slide"><img src="photo7.jpg" alt="Фото 2-7"></div>
+            <div class="slide"><img src="photo8.jpg" alt="Фото 2-8"></div>
+            <div class="slide"><img src="photo9.jpg" alt="Фото 2-9"></div>
+            <div class="slide"><img src="photo10.jpg" alt="Фото 2-10"></div>
+            <div class="slide"><img src="photo11.jpg" alt="Фото 2-11"></div>
+          </div>
+
+          <div class="controls">
+            <div class="slider-counter"></div>
+            <div class="nav-group n1"><label for="s2-11" class="prev">&#10094;</label><label for="s2-2" class="next">&#10095;</label></div>
+            <div class="nav-group n2"><label for="s2-1" class="prev">&#10094;</label><label for="s2-3" class="next">&#10095;</label></div>
+            <div class="nav-group n3"><label for="s2-2" class="prev">&#10094;</label><label for="s2-4" class="next">&#10095;</label></div>
+            <div class="nav-group n4"><label for="s2-3" class="prev">&#10094;</label><label for="s2-5" class="next">&#10095;</label></div>
+            <div class="nav-group n5"><label for="s2-4" class="prev">&#10094;</label><label for="s2-6" class="next">&#10095;</label></div>
+            <div class="nav-group n6"><label for="s2-5" class="prev">&#10094;</label><label for="s2-7" class="next">&#10095;</label></div>
+            <div class="nav-group n7"><label for="s2-6" class="prev">&#10094;</label><label for="s2-8" class="next">&#10095;</label></div>
+            <div class="nav-group n8"><label for="s2-7" class="prev">&#10094;</label><label for="s2-9" class="next">&#10095;</label></div>
+            <div class="nav-group n9"><label for="s2-8" class="prev">&#10094;</label><label for="s2-10" class="next">&#10095;</label></div>
+            <div class="nav-group n10"><label for="s2-9" class="prev">&#10094;</label><label for="s2-11" class="next">&#10095;</label></div>
+            <div class="nav-group n11"><label for="s2-10" class="prev">&#10094;</label><label for="s2-1" class="next">&#10095;</label></div>
+          </div>
+
+          <div class="card-caption">Літні спогади</div>
+        </div>
+      </div>
+
+      <!-- ЯЧЕЙКА 3 -->
+      <div class="slider-card">
+        <div class="css-slider">
+          <input type="radio" name="slider3" id="s3-1" checked>
+          <input type="radio" name="slider3" id="s3-2">
+          <input type="radio" name="slider3" id="s3-3">
+          <input type="radio" name="slider3" id="s3-4">
+          <input type="radio" name="slider3" id="s3-5">
+          <input type="radio" name="slider3" id="s3-6">
+          <input type="radio" name="slider3" id="s3-7">
+          <input type="radio" name="slider3" id="s3-8">
+          <input type="radio" name="slider3" id="s3-9">
+          <input type="radio" name="slider3" id="s3-10">
+          <input type="radio" name="slider3" id="s3-11">
+
+          <div class="slides">
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549457581540384879/image.png?ex=6ada3a52&is=6ad8e8d2&hm=954248289871021e7fcdba47a02f64ced52e5071fe63985f01e85142946a5982&" alt="Фото 3-1"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549460999554338956/-2147483648_-219303.jpg?ex=6ada3d81&is=6ad8ec01&hm=10f15120e7c9d1d7d048c694cf5c9c40a7248d3b519d6dd00edfe8744b21a5ab&" alt="Фото 3-2"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562547751470768158/image.png?ex=6ada637e&is=6ad911fe&hm=0f5eef98ff908b2288312608b9b26255f12d05827c4f794a91b633809b955739&" alt="Фото 3-3"></div>
+            <div class="slide"><img src="photo4.jpg" alt="Фото 3-4"></div>
+            <div class="slide"><img src="photo5.jpg" alt="Фото 3-5"></div>
+            <div class="slide"><img src="photo6.jpg" alt="Фото 3-6"></div>
+            <div class="slide"><img src="photo7.jpg" alt="Фото 3-7"></div>
+            <div class="slide"><img src="photo8.jpg" alt="Фото 3-8"></div>
+            <div class="slide"><img src="photo9.jpg" alt="Фото 3-9"></div>
+            <div class="slide"><img src="photo10.jpg" alt="Фото 3-10"></div>
+            <div class="slide"><img src="photo11.jpg" alt="Фото 3-11"></div>
+          </div>
+
+          <div class="controls">
+            <div class="slider-counter"></div>
+            <div class="nav-group n1"><label for="s3-11" class="prev">&#10094;</label><label for="s3-2" class="next">&#10095;</label></div>
+            <div class="nav-group n2"><label for="s3-1" class="prev">&#10094;</label><label for="s3-3" class="next">&#10095;</label></div>
+            <div class="nav-group n3"><label for="s3-2" class="prev">&#10094;</label><label for="s3-4" class="next">&#10095;</label></div>
+            <div class="nav-group n4"><label for="s3-3" class="prev">&#10094;</label><label for="s3-5" class="next">&#10095;</label></div>
+            <div class="nav-group n5"><label for="s3-4" class="prev">&#10094;</label><label for="s3-6" class="next">&#10095;</label></div>
+            <div class="nav-group n6"><label for="s3-5" class="prev">&#10094;</label><label for="s3-7" class="next">&#10095;</label></div>
+            <div class="nav-group n7"><label for="s3-6" class="prev">&#10094;</label><label for="s3-8" class="next">&#10095;</label></div>
+            <div class="nav-group n8"><label for="s3-7" class="prev">&#10094;</label><label for="s3-9" class="next">&#10095;</label></div>
+            <div class="nav-group n9"><label for="s3-8" class="prev">&#10094;</label><label for="s3-10" class="next">&#10095;</label></div>
+            <div class="nav-group n10"><label for="s3-9" class="prev">&#10094;</label><label for="s3-11" class="next">&#10095;</label></div>
+            <div class="nav-group n11"><label for="s3-10" class="prev">&#10094;</label><label for="s3-1" class="next">&#10095;</label></div>
+          </div>
+
+          <div class="card-caption">Яскраві моменти</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Деталі та навігація -->
+  <section class="content-section" id="details">
+    <h2 class="section-title">Деталі та навігація</h2>
+    <div class="info-card nav-details-card">
+      <p class="nav-details-text">Уся колекція кадрів та творчих робіт чекає на тебе в розділах:</p>
+      
+      <div class="nav-buttons-container">
+        <a href="index1.html" class="nav-btn-link">Модельні відео</a>
+        <a href="index0.html" class="nav-btn-link main-btn">Головна</a>
+        <a href="index3.html" class="nav-btn-link">Творчі едіти</a>
+        <a href="index3.html#footer" class="nav-btn-link">Таємнича пасхалка</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено спеціально для тебе.</p>
+  </footer>
+
+  <script src="adapt.js" defer></script>
+</body>
+</html>

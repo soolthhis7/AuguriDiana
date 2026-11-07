@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Підсумковий Вибір | SLTh7</title>
+  <link rel="stylesheet" href="stylegift.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="gift.html" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549893053181853756/1789593681100.png?ex=6aad02a3&is=6aabb123&hm=d9aec3e3b814a9aa5d45c59f458fffaa4cc07ce6d3c16cce81463d8de960c7d1&" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index0.html">Головна</a></li>
+        <li><a href="gift.html#gifts">Повернутися до вибору</a></li>
+        <li><a href="main.html">Відкритка</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Секція підсумкового вибору -->
+  <main class="final-wrapper">
+    <div class="final-card-box">
+      <h1 class="final-title">Підсумковий вибір подарунків</h1>
+      <p class="final-subtitle">Перевір свої обрані подарунки перед підтвердженням:</p>
+
+      <!-- Список 3 обраних подарунків -->
+      <ul id="summaryList" class="summary-list">
+        <!-- Заповнюється динамічно через JS -->
+      </ul>
+
+      <!-- Кнопка остаточного підтвердження -->
+      <button id="finalConfirmBtn" class="confirm-btn" onclick="submitFinalChoice()">
+        Підтвердити та відправити 🎉
+      </button>
+
+      <!-- Повідомлення після натискання -->
+      <div id="finalSuccessMsg" class="final-success-message" style="display: none;">
+        <h2>✨ Остаточний вибір зроблено! 🎉</h2>
+        <p>З Днем Народження! ❤️</p>
+      </div>
+
+      <!-- Кнопка переходу на сторінку зворотного зв'язку -->
+      <div class="feedback-link-container" style="margin-top: 25px; text-align: center;">
+        <a href="feedback.html" class="final-redirect-btn" style="display: inline-block; text-decoration: none; font-size: 1rem; padding: 12px 30px;">
+          Залишити фідбек 💬
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено спеціально для тебе.</p>
+  </footer>
+
+  <script>
+    // Логіка роботи гамбургер-меню
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+
+      // Закриття меню при кліку на будь-яке посилання всередині нього
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+
+    const BOT_TOKEN = '8990094605:AAHF_uIOLIr7GARwYHKWLxJIopp2a72R1Qs';
+    const ADMIN_CHAT_ID = '2122371486';
+
+    let gifts = JSON.parse(localStorage.getItem('selectedGifts')) || [];
+
+    const summaryList = document.getElementById('summaryList');
+    if (gifts.length === 0) {
+      summaryList.innerHTML = `<li class="no-gifts">Ви поки що не обрали жодного подарунка. <a href="gift.html#gifts" style="color:#ff4757;">Обрати зараз</a></li>`;
+    } else {
+      gifts.forEach((gift, index) => {
+        const li = document.createElement('li');
+        li.className = 'summary-item';
+        li.innerHTML = `<span class="gift-num">${index + 1}</span> <span class="gift-name">${gift}</span>`;
+        summaryList.appendChild(li);
+      });
+    }
+
+    function submitFinalChoice() {
+      if (gifts.length === 0) return;
+
+      const confirmBtn = document.getElementById('finalConfirmBtn');
+      confirmBtn.disabled = true;
+      confirmBtn.innerText = "Надсилання...";
+
+      const savedUsername = localStorage.getItem('authUsername') || 'Не вказано';
+      const savedEmail = localStorage.getItem('authEmail') || 'Не вказано';
+
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      const escapeMarkdown = (str) => {
+        return String(str).replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
+      };
+
+      const giftsFormatted = gifts.map((g, i) => `${i + 1}. *${escapeMarkdown(g)}*`).join('\n');
+      
+      // Додаємо додатковий рядок, якщо вибрано рівно 3 подарунки
+      let extraConditionText = "";
+      if (gifts.length === 3) {
+        extraConditionText = "\n💋 *Користувач тепер винен поцілунок у кружечок*";
+      }
+
+      const messageText = `🏁 *ОСТАТОЧНИЙ ВИБІР ПОДАРУНКІВ!*\n\n` +
+                          `Користувач зробив підсумковий вибір:\n\n` +
+                          `Обрані подарунки:\n${giftsFormatted}\n` +
+                          `${extraConditionText}\n\n` +
+                          `⏰ Час: ${timeString}\n🎉 З Днем Народження!\n\n` +
+                          `──────────────────\n` +
+                          `ℹ️ *Додаткова інформація з входу:*\n` +
+                          `👤 Користувач: ${escapeMarkdown(savedUsername)}\n` +
+                          `📧 Email: ${escapeMarkdown(savedEmail)}`;
+
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: ADMIN_CHAT_ID,
+          text: messageText,
+          parse_mode: 'Markdown'
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) {
+          confirmBtn.style.display = 'none';
+          document.getElementById('finalSuccessMsg').style.display = 'block';
+          localStorage.removeItem('selectedGifts');
+        } else {
+          console.error('Telegram API Error:', data);
+          alert('Помилка Telegram API: ' + (data.description || 'Невідома помилка'));
+          confirmBtn.disabled = false;
+          confirmBtn.innerText = "Підтвердити та відправити 🎉";
+        }
+      })
+      .catch(err => {
+        console.error('Network/CORS Error:', err);
+        alert('Помилка мережі або CORS.');
+        confirmBtn.disabled = false;
+        confirmBtn.innerText = "Підтвердити та відправити 🎉";
+      });
+    }
+  </script>
+</body>
+</html>

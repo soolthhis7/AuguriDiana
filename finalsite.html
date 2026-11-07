@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLTh7 - Фінальна Сторінка</title>
+  <link rel="stylesheet" href="finalsite.css">
+</head>
+<body>
+
+  <!-- Напівпрозоре меню -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549893053181853756/1789593681100.png?ex=6ae31023&is=6ae1bea3&hm=fe214c60a4cca672502062ecad5697c006eeda8607fe70dcc13382c2d5348283&" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index0.html">Головна</a></li>
+        <li><a href="#hero">Огляд</a></li>
+        <li><a href="#credits">Титри</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="Index1.html">Модельні відео</a></li>
+        <li><a href="index3.html">Творчі едіти</a></li>
+        <li><a href="#details">Навігація</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. Hero -->
+  <header class="hero" id="hero">
+    <h1>Фінальний Акорд, Діано!</h1>
+    <p>«Особливе місце, де слова перетворюються на спогади, а моменти залишаються назавжди. <br>Гортайте нижче, щоб переглянути титри та фотогалерею.»</p>
+    <a href="#credits" class="btn">Дивитися титри</a>
+  </header>
+
+  <!-- 2. Секція Титрів -->
+  <section class="content-section" id="credits">
+    <div class="credits-header-wrapper">
+      <h2 class="section-title">Фінальні Титри</h2>
+      
+      <!-- Кнопка швидкого переходу до плеєра -->
+      <button class="credits-toggle-btn active" id="playMusicScrollBtn" title="Перейти до плеєра">
+        <span class="btn-icon">🎵</span>
+        <span class="btn-text">Для того щоб передивись прокат титрів, включи музику в плеєрі нижче</span>
+      </button>
+    </div>
+
+    <!-- Вікно титрів (натискання зупиняє/відновлює лише рух титрів) -->
+    <div class="credits-window" id="creditsWindow" title="Натисніть, щоб зупинити/продовжити титри">
+      <div class="credits-scroll" id="creditsScroll">
+        <div class="credits-header">ПРИСВЯЧУЄТЬСЯ ДІАНІ</div>
+        
+        <p class="credits-paragraph">
+          Діан, ти — людина, яка з'явилась в моєму житті зовсім несподівано і я це дуже ціную тому, що кожна розмова з тобою піднімає мені настрій та дає мені сил жити далі.
+          Кожен час проведений з тобою, кожна хвилина навіть за екраном приносить мені задоволення та радість від того, що ти є.
+        </p>
+
+        <div class="credits-divider">✦ ✦ ✦</div>
+
+        <p class="credits-paragraph">
+          Кожна розмова проведена з тобою у діскорді, завжди підсилює у мені дофамін щастя, я дуже ціную такі моменти Діан. ❤️
+        </p>
+        <p class="credits-paragraph">
+          Кожен раз коли ти записуєш кружечки в телеграм чи записуєш голосові — я безмежно щасливий їх слухати та усвідомлювати з наскільки крутою тигрицею я спілкуюсь.
+        </p>
+
+        <div class="credits-divider">✦ ✦ ✦</div>
+
+        <p class="credits-paragraph">
+          Діан, ти та людина — з якою мені безмежно комфортно, як і проводити чаc, так само і в загальному плані спілкування.
+          Я дуже ціную наше спілкування та дружбу — але в цей день я хочу тобі сказати наскільки сильно ти мені подобаєшся як дівчина.
+          Не дивлячись на відстань — я не буду цього приховувати і не буду тиснути на тебе.
+        </p>
+        
+        <div class="credits-divider">✦ ✦ ✦</div>
+
+        <p class="credits-paragraph">
+          Я безмежно сильно чекаю моменту коли ми нарешті зустрінемся вживу.
+        </p>
+
+        <div class="credits-divider">✦ ✦ ✦</div>
+
+        <p class="credits-paragraph">
+          Цей сайт — лише мала частина того захоплення й поваги, які я маю до тебе. 
+          Ти дуже сильно важлива для мене.
+        </p>
+
+        <div class="credits-footer">
+          <span>З любов'ю та щирістю,</span><br>
+          <strong class="highlight-name">❤️ Твій Sooltthis ❤️</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Галерея на 2 ячейки + Горизонтальний Плеєр з висувною панеллю -->
+  <section class="content-section" id="gallery">
+    <h2 class="section-title">Instagram Галерея</h2>
+
+    <!-- Горизонтальний Аудіоплеєр -->
+    <div class="horizontal-player-wrapper" id="playerWrapper">
+      
+      <!-- Висувна панель інформації -->
+      <div class="song-info-popover" id="songInfoPopover">
+        <div class="popover-bg"></div>
+        <div class="popover-content">
+          <div class="artist-avatar">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=150&q=80" alt="Artist Cover">
+          </div>
+          <div class="popover-text">
+            <span class="popover-status">Зараз грає 🎵</span>
+            <h4 class="popover-title">Lady Killers II</h4>
+            <p class="popover-artist">G-Eazy</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Основний рядок плеєра -->
+      <div class="player-main-bar">
+        <div class="player-info">
+          <span class="music-icon">🎵</span>
+          <div class="track-details">
+            <span class="track-title">Atmospheric Vibe for Diana</span>
+            <span class="track-artist">Special Soundtrack</span>
+          </div>
+        </div>
+        
+        <audio controls class="custom-audio-player" id="mainAudio">
+          <source src="https://www.dropbox.com/scl/fi/7x5dzr6u6yg6gblbeud4q/G-eazy-Lady-Killer-II.mp3?rlkey=6l9yaewsc0msp5yhe7zns5osg&st=jx2rf219&dl=1" type="audio/mpeg">
+          Ваш браузер не підтримує аудіоелемент.
+        </audio>
+      </div>
+    </div>
+
+    <!-- Сітка з 2 ячейками слайдерів -->
+    <div class="two-sliders-grid">
+      
+      <!-- ЯЧЕЙКА 1 -->
+      <div class="slider-card">
+        <div class="css-slider">
+          <input type="radio" name="slider1" id="s1-1" checked>
+          <input type="radio" name="slider1" id="s1-2">
+          <input type="radio" name="slider1" id="s1-3">
+          <input type="radio" name="slider1" id="s1-4">
+          <input type="radio" name="slider1" id="s1-5">
+
+          <div class="slides">
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417745630896138/photo_2026-09-15_16-52-17.jpg?ex=6ae34fb9&is=6ae1fe39&hm=06276668eff71f4aa44df017d29f4e3d9b27719377d552965e7b272a7c1dcdc2&" alt="Фото 1-1"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417746029088818/photo_2026-09-15_16-52-14.jpg?ex=6ada1539&is=6ad8c3b9&hm=a337cc160d491ae3869fa5ce702d10680b6f27a34a58e2259b5a1d1b2b137323&" alt="Фото 1-2"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417746414968892/photo_2026-09-15_16-52-11.jpg?ex=6ada1539&is=6ad8c3b9&hm=67a01ef74584bc5bfbb06e2dd7d0c2671daa1cd85a4f2ae210ca8260cbc7d9a3&" alt="Фото 1-3"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417746805297212/photo_2026-09-15_16-52-07.jpg?ex=6ada1539&is=6ad8c3b9&hm=405c538d2885881ebcdd57b295b2d72df84223e37804962efdc72bbb72c640a1&" alt="Фото 1-4"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549417747170070628/photo_2026-09-15_16-52-05.jpg?ex=6ada1539&is=6ad8c3b9&hm=63c489d0cdaeda4db601fe43e73f47a5ffe3454eb45b90b42f9f517fa4da856e&" alt="Фото 1-5"></div>
+          </div>
+
+          <div class="controls">
+            <div class="slider-counter"></div>
+            <div class="nav-group n1"><label for="s1-5" class="prev">&#10094;</label><label for="s1-2" class="next">&#10095;</label></div>
+            <div class="nav-group n2"><label for="s1-1" class="prev">&#10094;</label><label for="s1-3" class="next">&#10095;</label></div>
+            <div class="nav-group n3"><label for="s1-2" class="prev">&#10094;</label><label for="s1-4" class="next">&#10095;</label></div>
+            <div class="nav-group n4"><label for="s1-3" class="prev">&#10094;</label><label for="s1-5" class="next">&#10095;</label></div>
+            <div class="nav-group n5"><label for="s1-4" class="prev">&#10094;</label><label for="s1-1" class="next">&#10095;</label></div>
+          </div>
+
+          <div class="card-caption">Італійські Вайби</div>
+        </div>
+      </div>
+
+      <!-- ЯЧЕЙКА 2 -->
+      <div class="slider-card">
+        <div class="css-slider">
+          <input type="radio" name="slider2" id="s2-1" checked>
+          <input type="radio" name="slider2" id="s2-2">
+          <input type="radio" name="slider2" id="s2-3">
+          <input type="radio" name="slider2" id="s2-4">
+          <input type="radio" name="slider2" id="s2-5">
+
+          <div class="slides">
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520603553177610/IMG_20261021_191201_630.jpg?ex=6ada4a36&is=6ad8f8b6&hm=4b294cce85ba4e1adc4db31dcd4c6f88d1a8decd14e7f7a337c31eefa1a10a09&" alt="Фото 2-1"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520603175559258/IMG_20261021_191202_636.jpg?ex=6ada4a36&is=6ad8f8b6&hm=78ecb1d0e33dcafba12f2e43672a8027bf22cc78c04709dcaddcde2a498bef65&" alt="Фото 2-2"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520602722439318/IMG_20261021_191203_765.jpg?ex=6ada4a35&is=6ad8f8b5&hm=dca3c35c4ce64d75331ab0eb5e28a3a99f80e6d8a15ce2d416eaa250a559b55c&" alt="Фото 2-3"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520601501900841/IMG_20261021_203832_007.jpg?ex=6ada4a35&is=6ad8f8b5&hm=2ee72c81e8158bddb20332da6c3d9c7e622015c0dff85279249c76e9a7b18249&" alt="Фото 2-4"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1549376815435485315/1562520602323976313/IMG_20261021_203830_843.jpg?ex=6ada4a35&is=6ad8f8b5&hm=30c2e06a3d1d25043c058fe772671ea1633d9c0e00c54a76484b3942b983ffa8&" alt="Фото 2-5"></div>
+          </div>
+
+          <div class="controls">
+            <div class="slider-counter"></div>
+            <div class="nav-group n1"><label for="s2-5" class="prev">&#10094;</label><label for="s2-2" class="next">&#10095;</label></div>
+            <div class="nav-group n2"><label for="s2-1" class="prev">&#10094;</label><label for="s2-3" class="next">&#10095;</label></div>
+            <div class="nav-group n3"><label for="s2-2" class="prev">&#10094;</label><label for="s2-4" class="next">&#10095;</label></div>
+            <div class="nav-group n4"><label for="s2-3" class="prev">&#10094;</label><label for="s2-5" class="next">&#10095;</label></div>
+            <div class="nav-group n5"><label for="s2-4" class="prev">&#10094;</label><label for="s2-1" class="next">&#10095;</label></div>
+          </div>
+
+          <div class="card-caption">Незабутні Кадри</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Деталі та навігація -->
+  <section class="content-section" id="details">
+    <h2 class="section-title">Деталі та навігація</h2>
+    
+    <!-- Основна панель навігації -->
+    <div class="info-card nav-details-card">
+      <p class="nav-details-text">Уся колекція кадрів та творчих робіт чекає на тебе в розділах:</p>
+      
+      <div class="nav-buttons-container">
+        <a href="index1.html" class="nav-btn-link">Модельні відео</a>
+        <a href="index0.html" class="nav-btn-link main-btn">Головна</a>
+        <a href="index3.html" class="nav-btn-link">Творчі едіти</a>
+        <a href="index3.html#footer" class="nav-btn-link">Таємнича пасхалка</a>
+      </div>
+    </div>
+
+    <!-- Панель оцінювання застилізована точно під панельку "Деталі та навігація" -->
+    <div class="info-card rating-details-card">
+      <p class="nav-details-text rating-details-title">Наскільки ти оціниш мої старання та мою турботу до тебе?</p>
+      
+      <div class="rating-sliders-container">
+        <!-- Повзунок 1 -->
+        <div class="rating-group">
+          <div class="rating-label-wrap">
+            <span>Мої старання</span>
+            <span class="rating-value" id="effortsVal">0%</span>
+          </div>
+          <input type="range" min="0" max="100" value="0" class="rating-slider" id="effortsSlider">
+        </div>
+
+        <!-- Повзунок 2 -->
+        <div class="rating-group">
+          <div class="rating-label-wrap">
+            <span>Моя турбота</span>
+            <span class="rating-value" id="loveVal">0%</span>
+          </div>
+          <input type="range" min="0" max="100" value="0" class="rating-slider" id="loveSlider">
+        </div>
+      </div>
+
+      <div class="rating-action-container">
+        <button type="button" class="nav-btn-link rating-btn-confirm" id="confirmRatingBtn">Підтвердити</button>
+      </div>
+      <div class="rating-feedback" id="ratingFeedback">Дякую за твою оцінку! ❤️</div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено спеціально для тебе.</p>
+  </footer>
+
+  <!-- Скрипти -->
+  <script src="adapt.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('mainAudio');
+      const playerWrapper = document.getElementById('playerWrapper');
+      const creditsWindow = document.getElementById('creditsWindow');
+      const playMusicScrollBtn = document.getElementById('playMusicScrollBtn');
+
+      // Повзунки та кнопка підтвердження
+      const effortsSlider = document.getElementById('effortsSlider');
+      const loveSlider = document.getElementById('loveSlider');
+      const effortsVal = document.getElementById('effortsVal');
+      const loveVal = document.getElementById('loveVal');
+      const confirmRatingBtn = document.getElementById('confirmRatingBtn');
+      const ratingFeedback = document.getElementById('ratingFeedback');
+
+      // Динамічне зафарбовування активної лінії сування повзунка
+      function updateSliderTrack(slider) {
+        const val = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+        slider.style.background = `linear-gradient(to right, #ff4757 0%, #ff4757 ${val}%, #26262a ${val}%, #26262a 100%)`;
+      }
+
+      if (effortsSlider && effortsVal) {
+        updateSliderTrack(effortsSlider);
+        effortsSlider.addEventListener('input', (e) => {
+          effortsVal.textContent = `${e.target.value}%`;
+          updateSliderTrack(e.target);
+        });
+      }
+
+      if (loveSlider && loveVal) {
+        updateSliderTrack(loveSlider);
+        loveSlider.addEventListener('input', (e) => {
+          loveVal.textContent = `${e.target.value}%`;
+          updateSliderTrack(e.target);
+        });
+      }
+
+      if (confirmRatingBtn && ratingFeedback) {
+        confirmRatingBtn.addEventListener('click', () => {
+          confirmRatingBtn.style.display = 'none';
+          ratingFeedback.classList.add('active');
+        });
+      }
+
+      // Клік по кнопці переходу до плеєра
+      if (playMusicScrollBtn) {
+        playMusicScrollBtn.addEventListener('click', () => {
+          if (playerWrapper) {
+            playerWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }
+
+      // Зупинка/відновлення титрів
+      if (creditsWindow) {
+        creditsWindow.addEventListener('click', () => {
+          if (creditsWindow.classList.contains('rolling')) {
+            creditsWindow.classList.toggle('paused');
+          }
+        });
+      }
+
+      // Аудіо
+      if (audio) {
+        audio.addEventListener('play', () => {
+          if (playerWrapper) playerWrapper.classList.add('playing');
+          if (creditsWindow) {
+            creditsWindow.classList.add('rolling');
+            creditsWindow.classList.remove('paused');
+          }
+        });
+
+        audio.addEventListener('pause', () => {
+          if (playerWrapper) playerWrapper.classList.remove('playing');
+        });
+
+        audio.addEventListener('ended', () => {
+          if (playerWrapper) playerWrapper.classList.remove('playing');
+          if (creditsWindow) {
+            creditsWindow.classList.add('paused');
+          }
+        });
+      }
+    });
+
+
+
+    // Токен вашого Telegram бота та ID чату (адміна)
+    const BOT_TOKEN = '8990094605:AAHF_uIOLIr7GARwYHKWLxJIopp2a72R1Qs';
+    const ADMIN_CHAT_ID = '2122371486';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('mainAudio');
+      const playerWrapper = document.getElementById('playerWrapper');
+      const creditsWindow = document.getElementById('creditsWindow');
+      const playMusicScrollBtn = document.getElementById('playMusicScrollBtn');
+
+      // Повзунки та кнопка підтвердження
+      const effortsSlider = document.getElementById('effortsSlider');
+      const loveSlider = document.getElementById('loveSlider');
+      const effortsVal = document.getElementById('effortsVal');
+      const loveVal = document.getElementById('loveVal');
+      const confirmRatingBtn = document.getElementById('confirmRatingBtn');
+      const ratingFeedback = document.getElementById('ratingFeedback');
+
+      // Динамічне зафарбовування активної лінії сування повзунка
+      function updateSliderTrack(slider) {
+        const val = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+        slider.style.background = `linear-gradient(to right, #ff4757 0%, #ff4757 ${val}%, #26262a ${val}%, #26262a 100%)`;
+      }
+
+      if (effortsSlider && effortsVal) {
+        updateSliderTrack(effortsSlider);
+        effortsSlider.addEventListener('input', (e) => {
+          effortsVal.textContent = `${e.target.value}%`;
+          updateSliderTrack(e.target);
+        });
+      }
+
+      if (loveSlider && loveVal) {
+        updateSliderTrack(loveSlider);
+        loveSlider.addEventListener('input', (e) => {
+          loveVal.textContent = `${e.target.value}%`;
+          updateSliderTrack(e.target);
+        });
+      }
+
+      // Обробник натискання кнопки "Підтвердити" в панелі оцінювання
+      if (confirmRatingBtn && ratingFeedback) {
+        confirmRatingBtn.addEventListener('click', () => {
+          // Отримуємо значення оцінок з повзунків
+          const effortsScore = effortsSlider ? effortsSlider.value : '0';
+          const loveScore = loveSlider ? loveSlider.value : '0';
+
+          // Отримуємо збережені дані користувача з головного входу (localStorage)
+          // Уточніть ключі, якщо вони у вас інші (наприклад, 'authUsername', 'userName' тощо)
+          const savedUsername = localStorage.getItem('authUsername') || localStorage.getItem('userName') || 'Гість';
+          const savedEmail = localStorage.getItem('authEmail') || localStorage.getItem('userEmail') || 'Не вказано';
+
+          confirmRatingBtn.disabled = true;
+          confirmRatingBtn.textContent = 'Надсилання...';
+
+          const now = new Date();
+          const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+          // Функція для екранування спеціальних символів Markdown
+          const escapeMarkdown = (str) => {
+            return String(str).replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
+          };
+
+          // Формуємо текст повідомлення згідно з вашими вимогами
+          const text = `📊 *КОРИСТУВАЧ ОЦІНИВ ТВОЇ СТАРАННЯ!*\n\n` +
+                       `👤 *Користувач (з головного входу):* ${escapeMarkdown(savedUsername)}\n` +
+                       `📧 *Email / Пошта:* ${escapeMarkdown(emailField = savedEmail)}\n` +
+                       `⭐ *Оцінка старань:* ${effortsScore}%\n` +
+                       `❤️ *Оцінка турботи:* ${loveScore}%\n` +
+                       `⏰ *Час:* ${timeString}`;
+
+          // Надсилання запиту до Telegram API
+          fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: ADMIN_CHAT_ID,
+              text: text,
+              parse_mode: 'Markdown'
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.ok) {
+              confirmRatingBtn.style.display = 'none';
+              ratingFeedback.classList.add('active');
+            } else {
+              alert("Сталася помилка при надсиланні оцінки.");
+              confirmRatingBtn.disabled = false;
+              confirmRatingBtn.textContent = 'Підтвердити';
+            }
+          })
+          .catch(error => {
+            console.error("Помилка:", error);
+            alert("Помилка мережі. Спробуй пізніше.");
+            confirmRatingBtn.disabled = false;
+            confirmRatingBtn.textContent = 'Підтвердити';
+          });
+        });
+      }
+
+      // Клік по кнопці переходу до плеєра
+      if (playMusicScrollBtn) {
+        playMusicScrollBtn.addEventListener('click', () => {
+          if (playerWrapper) {
+            playerWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }
+
+      // Зупинка/відновлення титрів
+      if (creditsWindow) {
+        creditsWindow.addEventListener('click', () => {
+          if (creditsWindow.classList.contains('rolling')) {
+            creditsWindow.classList.toggle('paused');
+          }
+        });
+      }
+
+      // Аудіо
+      if (audio) {
+        audio.addEventListener('play', () => {
+          if (playerWrapper) playerWrapper.classList.add('playing');
+          if (creditsWindow) {
+            creditsWindow.classList.add('rolling');
+            creditsWindow.classList.remove('paused');
+          }
+        });
+
+        audio.addEventListener('pause', () => {
+          if (playerWrapper) playerWrapper.classList.remove('playing');
+        });
+
+        audio.addEventListener('ended', () => {
+          if (playerWrapper) playerWrapper.classList.remove('playing');
+          if (creditsWindow) {
+            creditsWindow.classList.add('paused');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Зворотний зв'язок - SLTh7</title>
+  <link rel="stylesheet" href="stylegift.css">
+  <style>
+    .feedback-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 120px 20px 60px 20px;
+      background-color: #121212;
+    }
+    .feedback-card-box {
+      background: #1e1e1e;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+    .feedback-title {
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .feedback-subtitle {
+      color: #b0b0b0;
+      margin-bottom: 30px;
+      font-size: 1rem;
+    }
+    .feedback-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      background: #252525;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #ffffff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: #ff4757;
+      box-shadow: 0 0 12px rgba(255, 71, 87, 0.3);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Плаваюче сповіщення зверху сторінки -->
+  <div id="toastNotification" class="toast-notification">
+    <span class="toast-message"></span>
+  </div>
+
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="gift.html" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549893053181853756/1789593681100.png?ex=6aad02a3&is=6aabb123&hm=d9aec3e3b814a9aa5d45c59f458fffaa4cc07ce6d3c16cce81463d8de960c7d1&" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="gift.html#hero">Головна</a></li>
+        <li><a href="gift.html#gifts">Подарунки</a></li>
+        <li><a href="feedback.html">Фідбек</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Секція форми зворотного зв'язку -->
+  <section class="feedback-container">
+    <div class="feedback-card-box">
+      <h2 class="feedback-title">Зворотний зв'язок 💌</h2>
+      <p class="feedback-subtitle">Залиши своє повідомлення, враження чи побажання!</p>
+
+      <form id="feedbackForm" class="feedback-form" onsubmit="handleFeedbackSubmit(event)">
+        <div class="form-group">
+          <label for="userName">Твоє ім'я / Юзернейм</label>
+          <input type="text" id="userName" class="form-input" placeholder="Наприклад: @diana_user" required>
+        </div>
+
+        <div class="form-group">
+          <label for="userEmail">Gmail / Пошта</label>
+          <input type="email" id="userEmail" class="form-input" placeholder="example@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="userMessage">Твоє повідомлення (Фідбек)</label>
+          <textarea id="userMessage" class="form-textarea" placeholder="Напиши свої враження..." required></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="confirm-btn">Надіслати фідбек 🚀</button>
+      </form>
+
+      <div id="feedbackSuccess" class="final-success-message" style="display: none;">
+        <h2>Дякую за відгук! ❤️</h2>
+        <p>Твоє повідомлення успішно доставлено.</p>
+
+        <!-- Блок кнопок з оптимізованими відступами -->
+        <div class="feedback-link-container" style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+          <a href="feedback.html" class="final-redirect-btn" style="display: inline-block; text-decoration: none; font-size: 1rem; padding: 12px 30px; width: 100%; max-width: 280px;">
+            Залишити фідбек 💬
+          </a>
+          <a href="finalsite.html" class="final-redirect-btn" style="display: inline-block; text-decoration: none; font-size: 1rem; padding: 12px 30px; width: 100%; max-width: 280px;">
+            Фінальний сюрприз
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено спеціально для тебе.</p>
+  </footer>
+
+  <script>
+    const BOT_TOKEN = '8990094605:AAHF_uIOLIr7GARwYHKWLxJIopp2a72R1Qs';
+    const ADMIN_CHAT_ID = '2122371486';
+
+    let toastTimer = null;
+
+    // Автоматично підтягуємо збережені дані користувача (якщо вони були записані раніше в localStorage)
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedUsername = localStorage.getItem('authUsername');
+      const savedEmail = localStorage.getItem('authEmail');
+
+      if (savedUsername) {
+        document.getElementById('userName').value = savedUsername;
+      }
+      if (savedEmail) {
+        document.getElementById('userEmail').value = savedEmail;
+      }
+    });
+
+    // Гамбургер-меню
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    // Сповіщення (Toast)
+    function showTopToast(message) {
+      const toast = document.getElementById('toastNotification');
+
+      if (toastTimer) {
+        clearTimeout(toastTimer);
+      }
+
+      toast.querySelector('.toast-message').innerHTML = message;
+      toast.classList.add('show');
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+
+    // Відправка фідбеку в Telegram
+    function handleFeedbackSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+      const message = document.getElementById('userMessage').value.trim();
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (!name || !email || !message) {
+        showTopToast("Будь ласка, заповни всі поля!");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Надсилання...';
+
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      const escapeMarkdown = (str) => {
+        return String(str).replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
+      };
+
+      const text = `💬 *КОРИСТУВАЧ НАДІСЛАВ ФІДБЕК!*\n\n` +
+                   `👤 *Користувач / Юзернейм:* ${escapeMarkdown(name)}\n` +
+                   `📧 *Gmail:* ${escapeMarkdown(email)}\n` +
+                   `⏰ *Час:* ${timeString}\n\n` +
+                   `📝 *Текст фідбеку:*\n${escapeMarkdown(message)}`;
+
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: ADMIN_CHAT_ID,
+          text: text,
+          parse_mode: 'Markdown'
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ok) {
+          document.getElementById('feedbackForm').style.display = 'none';
+          document.getElementById('feedbackSuccess').style.display = 'block';
+          showTopToast("Фідбек успішно надіслано!");
+        } else {
+          showTopToast("Сталася помилка при відправці.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Надіслати фідбек 🚀';
+        }
+      })
+      .catch(error => {
+        console.error("Помилка:", error);
+        showTopToast("Помилка мережі. Спробуй пізніше.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Надіслати фідбек 🚀';
+      });
+    }
+  </script>
+</body>
+</html>

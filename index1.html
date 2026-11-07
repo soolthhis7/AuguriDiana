@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLTh7 - Персональний Сайт</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549893053181853756/1789593681100.png?ex=6aad02a3&is=6aabb123&hm=d9aec3e3b814a9aa5d45c59f458fffaa4cc07ce6d3c16cce81463d8de960c7d1&" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index0.html">Головна</a></li>
+        <li><a href="#hero">Огляд</a></li>
+        <li><a href="#biography">Біографія</a></li>
+        <li><a href="#gallery">Модельні відео</a></li>
+        <li><a href="index2.html">Галерея фото</a></li>
+        <li><a href="index3.html">Творчі едіти</a></li>
+        <li><a href="#details">Деталі та навігація</a></li>
+      </ul>
+    </div> 
+  </nav>
+
+  <!-- 1. Головна секція на весь екран (Hero) -->
+  <header class="hero" id="hero">
+    <h1>Ласкаво просимо, Діано!</h1>
+    <p>«Офіційний вебпростір з атмосферною <em>галереєю модельних відео</em>, та детальною інформацією. <br> 
+      Гортайте <em>нижче</em>, щоб дізнатися більше.»</p>
+    <a href="#gallery" class="btn">Дивитися галерею</a>
+  </header>
+
+  <!-- 2. Біографія -->
+  <section class="content-section" id="biography">
+    <h2 class="section-title">Про головну героїню</h2>
+    <div class="info-card hero-about-card">
+      <p class="about-lead">
+        Тут зібрані модельні відео 16-річної <span class="highlight-name">Діани Олексин — дівчини</span>, яка з першої секунди чіпляє в кадрі своїм стилем, крутою живою аурою. Вона класно працює на камеру, показуючи в кожному відео свій справжній унікальний характер.
+      </p>
+      
+      <div class="quote-box">
+        <p class="quote-text">
+          «Її відео настільки влучні, що вони не просто передають образ, а залітають прямо в серце. Кожен рух, погляд і емоція — це стовідсоткове попадання в естетику та стиль.»
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Відеогалерея (Одне вікно, 4 відео) -->
+  <section class="content-section" id="gallery">
+    <h2 class="section-title">Галерея модельних відео</h2>
+
+    <div class="video-slider-container">
+      <!-- Стрілочки переключення -->
+      <button class="nav-btn prev-btn" id="prevBtn" aria-label="Попереднє відео">&#10094;</button>
+      <button class="nav-btn next-btn" id="nextBtn" aria-label="Наступне відео">&#10095;</button>
+
+      <div class="video-player-wrapper">
+        <video id="videoPlayer" controls allowfullscreen playsinline>
+          <source src="" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Опис та лічильник -->
+      <div class="video-info">
+        <h3 id="videoTitle">Завантаження...</h3>
+        <div class="video-counter" id="videoCounter">Відео 1 з 4</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Деталі та навігація -->
+  <section class="content-section" id="details">
+    <h2 class="section-title">Деталі та навігація</h2>
+    <div class="info-card nav-details-card">
+      <p class="nav-details-text">Уся колекція кадрів та творчих робіт чекає на тебе в розділах:</p>
+      
+      <div class="nav-buttons-container">
+        <a href="index0.html" class="nav-btn-link">Головна</a>
+        <a href="index2.html" class="nav-btn-link main-btn">Галерея фото</a>
+        <a href="index3.html" class="nav-btn-link">Творчі едіти</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено спеціально для тебе.</p>
+  </footer>
+
+  <script src="script1.js" defer></script>
+  <script src="adapt.js" defer></script>
+</body>
+</html>

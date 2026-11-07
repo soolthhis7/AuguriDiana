@@ -1,0 +1,935 @@
+/* ==========================================
+   ОСНОВНІ СТИЛІ ТА СКИДАННЯ (RESET)
+   ========================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   НАВІГАЦІЯ (GLASSMORPHIC NAVBAR)
+   ========================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(18, 18, 18, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  padding: 15px 0;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar:has(.nav-links.active) {
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  height: 45px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff4757;
+}
+
+/* ==========================================
+   1. HERO СЕКЦІЯ
+   ========================================== */
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+              url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 1000px !important;
+  width: 90% !important;
+  margin: 0 auto 30px auto !important;
+  color: #e0e0e0;
+  text-align: center;
+  white-space: normal;
+}
+
+.hero .btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #ff4757;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.hero .btn:hover {
+  background-color: #ff6b81;
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   КОНТЕНТНІ СЕКЦІЇ ТА ЗАГОЛОВКИ
+   ========================================== */
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff4757;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.info-card {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.info-card p {
+  color: #e0e0e0;
+  font-size: 1.05rem;
+}
+
+/* ==========================================
+   2. АНІМОВАНІ ТИТРИ ТА КНОПКА СИНХРОНІЗАЦІЇ
+   ========================================== */
+.credits-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.credits-header-wrapper .section-title {
+  margin-bottom: 0;
+}
+
+.credits-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 71, 87, 0.4);
+  border-radius: 25px;
+  color: #d1d1d6;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.credits-toggle-btn:hover {
+  background: rgba(255, 71, 87, 0.15);
+  border-color: #ff4757;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.credits-toggle-btn.active {
+  background: rgba(255, 71, 87, 0.25);
+  border-color: #ff4757;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 71, 87, 0.3);
+}
+
+.credits-window {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 380px;
+  margin: 0 auto;
+  background: #000000;
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.credits-window::before,
+.credits-window::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.credits-window::before {
+  top: 0;
+  background: linear-gradient(to bottom, #000000 20%, transparent 100%);
+}
+
+.credits-window::after {
+  bottom: 0;
+  background: linear-gradient(to top, #000000 20%, transparent 100%);
+}
+
+.credits-scroll {
+  position: absolute;
+  width: 100%;
+  padding: 0 30px;
+  text-align: center;
+  top: 0;
+  transform: translateY(380px);
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.credits-window.rolling .credits-scroll {
+  opacity: 1;
+  animation: rollCredits 60s linear infinite;
+  animation-play-state: running;
+}
+
+.credits-window.paused .credits-scroll {
+  animation-play-state: paused;
+}
+
+@keyframes rollCredits {
+  0% {
+    transform: translateY(380px);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.credits-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ff4757;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.credits-paragraph {
+  font-size: 1.1rem;
+  color: #d1d1d6;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.credits-divider {
+  color: #ff4757;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  margin: 20px 0;
+  opacity: 0.7;
+}
+
+.credits-footer {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.highlight-name {
+  color: #ff4757;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   3. ГОРИЗОНТАЛЬНИЙ ПЛЕЄР ТА ІКОНКА
+   ========================================== */
+.horizontal-player-wrapper {
+  position: relative;
+  max-width: 760px;
+  margin: 50px auto 45px auto;
+  background: #18181b;
+  border: 1px solid rgba(255, 71, 87, 0.25);
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  z-index: 10;
+}
+
+.horizontal-player-wrapper.playing {
+  border-color: rgba(255, 71, 87, 0.6);
+  box-shadow: 0 12px 35px rgba(255, 71, 87, 0.25);
+}
+
+.player-main-bar {
+  position: relative;
+  z-index: 3;
+  background: #18181b;
+  border-radius: 28px;
+  padding: 12px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.music-icon {
+  font-size: 1.4rem;
+  background: rgba(255, 71, 87, 0.15);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.horizontal-player-wrapper.playing .music-icon {
+  animation: smoothRotate 6s linear infinite;
+  background: rgba(255, 71, 87, 0.3);
+  box-shadow: 0 0 12px rgba(255, 71, 87, 0.4);
+}
+
+@keyframes smoothRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.track-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-title {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.track-artist {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+}
+
+.custom-audio-player {
+  height: 36px;
+  max-width: 320px;
+  width: 100%;
+  outline: none;
+  border-radius: 20px;
+}
+
+/* Висувна напівпрозора панелька */
+.song-info-popover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0) scale(0.92);
+  width: 92%;
+  max-width: 680px;
+  height: 75px;
+  border-radius: 20px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 71, 87, 0.35);
+
+  transition: 
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.5s ease;
+}
+
+.horizontal-player-wrapper.playing .song-info-popover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -82px) scale(1);
+}
+
+.popover-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;
+  opacity: 0.2;
+  filter: blur(10px);
+  z-index: 1;
+}
+
+.popover-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.artist-avatar img {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.popover-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popover-status {
+  font-size: 0.7rem;
+  color: #ff4757;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.popover-title {
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.popover-artist {
+  font-size: 0.8rem;
+  color: #d1d1d6;
+}
+
+/* ==========================================
+   4. СІТКА НА 2 ЯЧЕЙКИ (СЛАЙДЕРИ ФОТО)
+   ========================================== */
+.two-sliders-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.css-slider {
+  position: relative;
+  width: 360px;
+  height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.css-slider:hover {
+  transform: scale(1.03) translateZ(0);
+}
+
+.css-slider input[type="radio"] {
+  display: none;
+}
+
+.slides {
+  display: flex;
+  width: 500%;
+  height: 100%;
+  transition: margin-left 0.5s ease-in-out;
+}
+
+.slide {
+  width: 20%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+input[id$="-1"]:checked ~ .slides { margin-left: 0%; }
+input[id$="-2"]:checked ~ .slides { margin-left: -100%; }
+input[id$="-3"]:checked ~ .slides { margin-left: -200%; }
+input[id$="-4"]:checked ~ .slides { margin-left: -300%; }
+input[id$="-5"]:checked ~ .slides { margin-left: -400%; }
+
+.nav-group {
+  display: none;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.nav-group label {
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.nav-group label:hover {
+  background: #ff4757;
+  transform: scale(1.1);
+}
+
+input[id$="-1"]:checked ~ .controls .n1,
+input[id$="-2"]:checked ~ .controls .n2,
+input[id$="-3"]:checked ~ .controls .n3,
+input[id$="-4"]:checked ~ .controls .n4,
+input[id$="-5"]:checked ~ .controls .n5 {
+  display: flex;
+}
+
+.card-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 15px 20px 15px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-align: center;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  z-index: 3;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.css-slider:hover .card-caption {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+}
+
+.slider-counter {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+#s1-1:checked ~ .controls .slider-counter::after,
+#s2-1:checked ~ .controls .slider-counter::after { content: "1 / 5"; }
+
+#s1-2:checked ~ .controls .slider-counter::after,
+#s2-2:checked ~ .controls .slider-counter::after { content: "2 / 5"; }
+
+#s1-3:checked ~ .controls .slider-counter::after,
+#s2-3:checked ~ .controls .slider-counter::after { content: "3 / 5"; }
+
+#s1-4:checked ~ .controls .slider-counter::after,
+#s2-4:checked ~ .controls .slider-counter::after { content: "4 / 5"; }
+
+#s1-5:checked ~ .controls .slider-counter::after,
+#s2-5:checked ~ .controls .slider-counter::after { content: "5 / 5"; }
+
+/* ==========================================
+   5. ДЕТАЛІ ТА НАВІГАЦІЯ (СТИЛІЗОВАНА ПАНЕЛЬ ОЦІНЮВАННЯ)
+   ========================================== */
+.info-card.nav-details-card {
+  text-align: center;
+  transition: none !important;
+  margin-bottom: 30px;
+}
+
+.info-card.nav-details-card:hover {
+  transform: none !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.nav-details-text {
+  color: #e0e0e0;
+  font-size: 1.05rem;
+  margin-bottom: 25px;
+}
+
+.nav-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.nav-btn-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: #26262a;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-btn-link:hover {
+  background-color: #ff4757;
+  color: #ffffff !important;
+  border-color: #ff4757;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+}
+
+.nav-btn-link:active {
+  transform: translateY(-1px) scale(0.97);
+  background-color: #e03847;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
+/* Повна стилізація панелі оцінювання під картку "Деталі та навігація" */
+.rating-details-card {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.rating-details-title {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.rating-sliders-container {
+  max-width: 750px;
+  margin: 0 auto 25px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rating-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.rating-label-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #d1d1d6;
+  font-weight: 500;
+}
+
+.rating-value {
+  color: #ff4757;
+  font-weight: 700;
+}
+
+/* Колір повзунка та активної лінії */
+.rating-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #26262a;
+  outline: none;
+}
+
+.rating-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff4757;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.rating-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #ff6b81;
+}
+
+.rating-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff4757;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.rating-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  background: #ff6b81;
+}
+
+.rating-action-container {
+  display: flex;
+  justify-content: center;
+}
+
+.rating-btn-confirm {
+  background-color: #ff4757;
+  border-color: #ff4757;
+  padding: 12px 36px;
+}
+
+.rating-btn-confirm:hover {
+  background-color: #ff6b81;
+}
+
+.rating-feedback {
+  display: none;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #ff4757;
+  font-weight: 600;
+}
+
+.rating-feedback.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   ФУТЕР ТА АДАПТИВНІСТЬ
+   ========================================== */
+.footer {
+  background-color: #0d0d0d;
+  color: #888888;
+  text-align: center;
+  padding: 25px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+    gap: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hero h1 { font-size: 2.2rem; }
+  .css-slider { width: 100%; max-width: 360px; height: 480px; }
+}
+
+@media (max-width: 650px) {
+  .player-main-bar {
+    flex-direction: column;
+    border-radius: 24px;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .player-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .horizontal-player-wrapper.playing .song-info-popover {
+    transform: translate(-50%, -95px) scale(1);
+  }
+
+  .nav-buttons-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-btn-link {
+    width: 100%;
+    max-width: 280px;
+  }
+}

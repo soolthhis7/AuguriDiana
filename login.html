@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Back</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="stlogin.css">
+</head>
+<body>
+
+    <div class="main-card" id="mainCard">
+        <div class="form-side welcome-side">
+            <div class="heart-container" onclick="this.classList.toggle('active')">
+                <div class="heart-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <span class="heart-hint">зроби клік...</span>
+                <span class="love-popup-text">Для улюбленої Діани! 💖</span>
+            </div>
+            
+            <h2>Отакої, дівчино! ✨</h2>
+            
+            <p class="welcome-text">
+                Для вас вже було створено особистий акаунт
+            </p>
+            <p class="welcome-text">
+                <strong>7 місяців тому</strong> 💖
+                <span class="date-subtext">30.03.2026</span>
+            </p>
+
+            <a href="signup.html" class="signup-btn welcome-btn smooth-link">Перейти до входу</a>
+        </div>
+
+        <div class="image-side">
+            <div class="image-container">
+                <img src="https://s.widget-club.com/images/YyiR86zpwIMIfrCZoSs4ulVD9RF3/392fd542d20d8c39aa20ab1d192e0026/MXmLQq5SsG08nT7NcbFu.jpg?q=70&w=500" alt="Romantic Night">
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const mainCard = document.getElementById('mainCard');
+
+    // Плавна поява сторінки
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            mainCard.classList.add('page-loaded');
+        }, 50);
+    });
+
+    // Плавний вихід при переході на кнопку або посилання
+    document.querySelectorAll('.smooth-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            mainCard.classList.remove('page-loaded');
+            mainCard.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 400);
+        });
+    });
+    </script>
+
+</body>
+</html>

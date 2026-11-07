@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLTh7 - Головна</title>
+  <link rel="stylesheet" href="style0.css">
+</head>
+<body>
+
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549893053181853756/1789593681100.png?ex=6ad88423&is=6ad732a3&hm=b5c9f772e038e655b20c9e9e513273366d52791a9a86552cf5827d7c3845e306&" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Головна</a></li>
+        <li><a href="#about">Про Діану</a></li>
+        <li><a href="#campagnano">Campagnano di Roma</a></li>
+        <li><a href="index1.html">Модельні відео</a></li>
+        <li><a href="index2.html">Галерея фото</a></li>
+        <li><a href="index3.html">Творчі едіти</a></li>
+        <li><a href="#details">Деталі</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. Головна секція на весь екран (Hero) -->
+  <header class="hero" id="hero">
+    <h1>Ласкаво просимо, Діано! ✨</h1>
+    <!-- Перший рядок українською з назвою міста англійською, другий рядок про місто -->
+    <p>
+      Сайт про одну особливу дівчину з Богородчан, яка живе в місті «Campagnano di Roma.»<br>
+      Campagnano di Roma — атмосферне італійське містечко, де народжуються особливі спогади.
+    </p>
+    <a href="#about" class="btn">Почати огляд</a>
+  </header>
+
+<!-- 2. Про Діану -->
+  <section class="content-section" id="about">
+    <h2 class="section-title">Про головну героїню</h2>
+    <div class="info-card hero-about-card">
+      <p class="about-lead">
+        Тут зібрана історія про головну героїню <span class="highlight-name">Діану</span>, яка тепер... скажімо так, влучно підкорює серця не поглядом, а своєю неповторною аурою та енергетикою, яка зачіпає з першої ж хвилини... Ця <span class="highlight-name">Хижачка</span> занадто особлива, щоб бути звичайною.
+      </p>
+      
+      <div class="quote-box">
+        <p class="quote-text">
+          «Вона непередбачувана й імпульсивна, але неймовірно рідна. <br>
+          Всі її емоції — справжні. І навіть коли вона біситься чи показує характер, у цьому стільки життя... У такі хвилини вона виглядає нереально особливою, а її дрібні мінуси роблять її тільки милішою.»
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Секція: Campagnano di Roma з натяками -->
+  <section class="content-section" id="campagnano">
+    <h2 class="section-title">Campagnano di Roma & Його Магія</h2>
+    <div class="cards-grid">
+      
+      <div class="info-card">
+        <h3>🏛 Місце, де зупиняється час</h3>
+        <p>Campagnano di Roma зберігає старовинну естетику Лаціо. Серед цих вузьких затишних вуличок і сонячних фасадів легко відчути особливий магнетизм — той самий, що здатний непомітно захопити всю увагу й забрати спокій назавжди.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>✨ Тихий чар і невидима сила</h3>
+        <p>Це місто не потребує гучних слів, щоб закохати в себе. Воно підкорює м'яко, одним лише поглядом на сонячні дахи, залишаючи глибокий слід у душі — так само, як це вміє робити лише одна головна героїня цього вебпростору.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>☕ Вайб італійських вечорів</h3>
+        <p>Тихі вечори в Campagnano di Roma нагадують про те, як легко втратити контроль над власними думками, коли поруч є щось справді прекрасне, витончене та неповторне.</p>
+      </div>
+
+    </div>
+  </section>
+
+<!-- 4. Детальна інформація / Навігація -->
+  <section class="content-section" id="details">
+    <h2 class="section-title">Деталі та навігація</h2>
+    <div class="info-card nav-details-card">
+      <p class="nav-details-text">Уся колекція кадрів та творчих робіт чекає на тебе в розділах:</p>
+      
+      <div class="nav-buttons-container">
+        <a href="index1.html" class="nav-btn-link">Модельні відео</a>
+        <a href="index2.html" class="nav-btn-link main-btn">Галерея фото</a>
+        <a href="index3.html" class="nav-btn-link">Творчі едіти</a>
+      </div>
+    </div>
+  </section>
+
+    <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено спеціально для тебе.</p>
+  </footer>
+
+  <script>
+    console.log("Ура! Скрипт підключено успішно!");
+    alert("З приходом на сайт!");
+    alert("Він створений спеціально для тебе!");
+    
+    function scrollDown() {
+        window.scrollTo({top: window.innerHeight, behavior: 'smooth' });
+    }
+  </script>
+  <script src="adapt.js" defer></script>
+</body>
+</html>

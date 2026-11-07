@@ -1,0 +1,111 @@
+/* ==========================================
+   Секція / Панель зворотного зв'язку
+   ========================================== */
+.feedback-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 20px 60px 20px;
+  background-color: #121212;
+}
+
+.feedback-card-box {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 550px;
+  width: 100%;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transition: border-color 0.4s ease;
+}
+
+.feedback-card-box:hover {
+  border-color: rgba(255, 71, 87, 0.3);
+}
+
+.feedback-title {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.feedback-subtitle {
+  color: #b0b0b0;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.form-input, 
+.form-textarea {
+  width: 100%;
+  background: #252525;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus, 
+.form-textarea:focus {
+  border-color: #ff4757;
+  box-shadow: 0 0 12px rgba(255, 71, 87, 0.3);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-feedback-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #ff4757, #ff6b81);
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-feedback-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 71, 87, 0.6);
+  background: linear-gradient(135deg, #ff6b81, #ff4757);
+}
+
+.submit-feedback-btn:disabled {
+  background: #444;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

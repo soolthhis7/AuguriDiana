@@ -1,0 +1,435 @@
+/* Плавна прокрутка сторінки */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Напівпрозоре фіксоване меню (Glassmorphic Navigation Bar) */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(18, 18, 18, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  padding: 15px 0;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Коли мобільне меню відкрите, шапка плавно змінює колір і розмиття разом із випадаючим блоком */
+.navbar:has(.nav-links.active) {
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Контейнер посилання логотипа */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Стилі для самої картинки логотипа */
+.nav-logo img {
+  height: 45px;       /* Оптимальна висота під розмір тексту меню */
+  width: auto;        /* Зберігає оригінальні пропорції логотипа */
+  display: block;     /* Прибирає небажаний нижній відступ */
+  object-fit: contain;
+}
+
+/* Кнопка гамбургер (прихована на ПК) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Анімація гамбургера в хрестик при відкритті */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff4757;
+}
+
+/* 1. Головна секція на весь екран (Hero) */
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+              url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 1000px !important; /* Примусово розширюємо блок */
+  width: 90% !important;
+  margin: 0 auto 30px auto !important;
+  color: #e0e0e0;
+  text-align: center;
+  white-space: normal; /* Дозволяє тексту іти в один-два довгі рядки */
+}
+
+.hero .btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #ff4757;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.hero .btn:hover {
+  background-color: #ff6b81;
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   4. КОНТЕНТНІ СЕКЦІЇ ТА ЗАГОЛОВКИ
+   ========================================== */
+.content-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff4757;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.info-card {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.info-card p {
+  color: #e0e0e0;
+  font-size: 1.05rem;
+}
+
+/* Спеціальний дизайн для картки "Про Діану" */
+.hero-about-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #18181b, #121214);
+  border: 1px solid rgba(255, 71, 87, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  width: 100%;
+}
+
+.about-lead {
+  font-size: 1.05rem;
+  color: #e0e0e0;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.highlight-name {
+  color: #ff4757;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.quote-box {
+  position: relative;
+  margin-top: 20px;
+  padding: 18px 20px;
+  background: rgba(255, 71, 87, 0.06);
+  border-left: 4px solid #ff4757;
+  border-radius: 0 12px 12px 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.quote-text {
+  font-style: italic;
+  color: #f1f2f6;
+  font-size: 1rem;
+  line-height: 1.7;
+  white-space: normal;
+}
+
+/* Контейнер для ВЕРТИКАЛЬНОГО відео (Формат 9:16) */
+.video-slider-container {
+  position: relative;
+  max-width: 380px;
+  margin: 0 auto;
+  background: #1e1e1e;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 177.78%; /* Співвідношення 9:16 */
+  height: 0;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.video-player-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border: none;
+}
+
+.video-info {
+  padding: 20px;
+  text-align: center;
+  background: #181818;
+}
+
+.video-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.video-counter {
+  font-size: 0.85rem;
+  color: #888888;
+}
+
+/* Кнопки-стрілочки */
+.nav-btn {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.nav-btn:hover {
+  background: #ff4757;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* ==========================================
+   Стилізація кнопок навігації в секції Details
+   ========================================== */
+.info-card.nav-details-card {
+  text-align: center;
+  transition: none !important;
+}
+
+.info-card.nav-details-card:hover {
+  transform: none !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.nav-details-text {
+  color: #e0e0e0;
+  font-size: 1.05rem;
+  margin-bottom: 25px;
+}
+
+.nav-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.nav-btn-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: #26262a;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-btn-link:hover {
+  background-color: #ff4757;
+  color: #ffffff !important;
+  border-color: #ff4757;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+}
+
+.nav-btn-link:active {
+  transform: translateY(-1px) scale(0.97);
+  background-color: #e03847;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
+/* Футер */
+.footer {
+  background-color: #0d0d0d;
+  color: #888888;
+  text-align: center;
+  padding: 25px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+/* Адаптивність та мобільне меню */
+@media (max-width: 768px) {
+  /* Увімкнення гамбургер-кнопки */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Випадаюче мобільне меню */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+    gap: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hero h1 { font-size: 2.2rem; }
+  .video-slider-container { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .nav-buttons-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-btn-link {
+    width: 100%;
+    max-width: 280px;
+  }
+}

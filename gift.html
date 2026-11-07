@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLTh7 - Персональний Сайт</title>
+  <link rel="stylesheet" href="stylegift.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+  <!-- Плаваюче сповіщення зверху сторінки -->
+  <div id="toastNotification" class="toast-notification">
+    <span class="toast-message"></span>
+  </div>
+
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1549376815435485315/1549893053181853756/1789593681100.png?ex=6aad02a3&is=6aabb123&hm=d9aec3e3b814a9aa5d45c59f458fffaa4cc07ce6d3c16cce81463d8de960c7d1&" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index0.html">Головна</a></li>
+        <li><a href="#hero">Огляд</a></li>
+        <li><a href="#gifts">Вибір нагороди</a></li>
+        <li><a href="main.html">Відкритка</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. Головна секція на весь екран (Hero) -->
+  <header class="hero" id="hero">
+    <h1>Ласкаво просимо, Діано!</h1>
+    <p>«Офіційний вебпростір з атмосферною <em>галереєю</em>, моментами з життя та детальною інформацією. <br> 
+      Гортайте <em>нижче</em>, щоб дізнатися більше.»</p>
+    <a href="#gifts" class="btn">Обрати нагороду</a>
+  </header>
+
+  <!-- 2. Секція вибору подарунків на весь екран -->
+  <section class="gifts-container" id="gifts">
+    <div class="gifts-content-wrapper">
+      <h2 class="gifts-title">Тепер час обирати нагороду!</h2>
+      <p class="gifts-subtitle">Вибирай 2 подарунки, що тобі захочеться</p>
+
+      <div class="gifts-grid">
+        <!-- Подарунок 1 -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f48e/512.webp" alt="Діамант" class="gift-img">
+          </div>
+          <h3>Діамант</h3>
+          <div class="gift-price">
+            <span class="stars-val">Підкреслить твою унікальність ⭐</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+
+        <!-- Подарунок 2 -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f48d/512.webp" alt="Колечко" class="gift-img">
+          </div>
+          <h3>Колечко</h3>
+          <div class="gift-price">
+            <span class="stars-val">Гарний аксесуар ⭐</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+
+        <!-- Telegram Преміум -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f31f/512.webp" alt="Telegram Преміум" class="gift-img">
+          </div>
+          <h3>Telegram Преміум</h3>
+          <div class="gift-price toggle-price-box">
+            <span class="price-default">Підкреслить твій статус ⭐</span>
+            <span class="price-hover">Обирай, не тяни!</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+
+        <!-- Подарунок 4 -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f366/512.webp" alt="Морозиво" class="gift-img">
+          </div>
+          <h3>Солодке морозиво</h3>
+          <div class="gift-price">
+            <span class="stars-val">Найсвіжіший смак ⭐</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+
+        <!-- Подарунок 5 (Недоступний) -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f382/512.webp" alt="Плюшевий ведмедик" class="gift-img">
+          </div>
+          <h3>Святковий торт</h3>
+          <div class="gift-price">
+            <span class="stars-val">Віртуальні калорії ⭐</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+
+        <!-- Подарунок 6 (Недоступний) -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f339/512.webp" alt="Троянда" class="gift-img">
+          </div>
+          <h3>Червона троянда</h3>
+          <div class="gift-price">
+            <span class="stars-val">Неймовірно красива квітка ⭐</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+
+        <!-- Подарунок 7 (Недоступний) -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f496/512.webp" alt="Сердечко" class="gift-img">
+          </div>
+          <h3>Блискуче серце</h3>
+          <div class="gift-price">
+            <span class="stars-val">Символ проходження ⭐</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+
+        <!-- Подарунок 8 (Недоступний) -->
+        <div class="gift-card">
+          <div class="gift-icon-container">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f381/512.webp" alt="Подарунок" class="gift-img">
+          </div>
+          <h3>Подарунок (Box)</h3>
+          <div class="gift-price">
+            <span class="stars-val">А що ж там усередині? ⭐</span>
+          </div>
+          <button class="select-btn" onclick="toggleSelect(this)">Обрати</button>
+        </div>
+      </div>
+
+      <!-- Кнопка остаточного вибору під панеллю подарунків -->
+      <div class="final-redirect-container">
+        <button class="final-redirect-btn" onclick="goToFinalPage()">Остаточний вибір ➔</button>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // Логіка роботи гамбургер-меню
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+
+    function goToFinalPage() {
+      const activeCards = document.querySelectorAll('.gift-card.active-card');
+      
+      if (activeCards.length === 2) {
+        showTopToast("Для іменинниць діє акція на 3 подарунок &lt;3");
+        return;
+      }
+
+      if (activeCards.length === 0) {
+        showTopToast("Будь ласка, обери хоча б один подарунок перед вибором!");
+        return;
+      }
+      
+      const selectedGifts = Array.from(activeCards).map(card => {
+        return card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Подарунок';
+      });
+
+      localStorage.setItem('selectedGifts', JSON.stringify(selectedGifts));
+      window.location.href = 'finalgift.html';
+    }
+  </script>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено спеціально для тебе.</p>
+  </footer>
+
+  <script>
+    console.log("Ура! Скрипт підключено успішно!");
+
+    const BOT_TOKEN = '8990094605:AAHF_uIOLIr7GARwYHKWLxJIopp2a72R1Qs';
+    const ADMIN_CHAT_ID = '2122371486'; 
+
+    let maxAllowedGifts = 2;
+    let spamClickCount = 0;
+    let toastTimer = null;
+
+    function showTopToast(message) {
+      const toast = document.getElementById('toastNotification');
+
+      if (toastTimer) {
+        clearTimeout(toastTimer);
+        toastTimer = null;
+      }
+
+      if (toast.classList.contains('show')) {
+        toast.classList.remove('show');
+        
+        setTimeout(() => {
+          toast.querySelector('.toast-message').innerHTML = message;
+          toast.classList.add('show');
+          
+          toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+          }, 4000);
+        }, 300);
+      } else {
+        toast.querySelector('.toast-message').innerHTML = message;
+        toast.classList.add('show');
+
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      }
+    }
+
+    function sendTelegramNotification(giftName, isThird = false) {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      let extraText = isThird ? "\n💋 *Користувач тепер винен поцілунок у кружечок*" : "";
+      const messageText = `🎁 Обрано подарунок на сайті!\n\n📦 Подарунок: *${giftName}*${extraText}\n⏰ Час: ${timeString}`;
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+      
+      const payload = {
+        chat_id: ADMIN_CHAT_ID,
+        text: messageText,
+        parse_mode: 'Markdown'
+      };
+
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ok) {
+          console.log("Повідомлення успішно відправлено в бота!");
+        } else {
+          console.error("Помилка відправки:", data);
+        }
+      })
+      .catch(error => {
+        console.error("Помилка мережі:", error);
+      });
+    }
+
+    function toggleSelect(button) {
+      const card = button.closest('.gift-card');
+      const allCards = Array.from(document.querySelectorAll('.gift-card'));
+      const cardIndex = allCards.indexOf(card);
+
+      if (cardIndex >= 4) {
+        showTopToast("Ти заслуговуєш на краще &lt;3");
+        return;
+      }
+
+      const giftName = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Подарунок';
+
+      if (card.classList.contains('active-card')) {
+        card.classList.remove('active-card');
+        button.classList.remove('active');
+        button.textContent = 'Обрати';
+        
+        const currentActiveCount = document.querySelectorAll('.gift-card.active-card').length;
+        if (currentActiveCount < 3) {
+          maxAllowedGifts = 2;
+          spamClickCount = 0;
+        }
+        return;
+      }
+
+      const activeCards = document.querySelectorAll('.gift-card.active-card');
+
+      if (activeCards.length >= 3) {
+        showTopToast("Баста з тебе");
+        return;
+      }
+
+      // Перевіряємо, чи це буде саме 3-й подарунок
+      const isThirdGift = (activeCards.length === 2);
+
+      if (activeCards.length >= maxAllowedGifts) {
+        spamClickCount++;
+
+        if (spamClickCount === 1) {
+          showTopToast("Ти вже обрала 2 подарунки! Щоб змінити вибір, спочатку скасуй один із вибраних.");
+          return;
+        } else {
+          maxAllowedGifts = 3;
+          showTopToast("Ну раз хочеш 3 подарунок з тебе поцілунок в кружечок &lt;3");
+        }
+      }
+
+      card.classList.add('active-card');
+      button.classList.add('active');
+      button.textContent = 'Обрано! ✓';
+
+      sendTelegramNotification(giftName, isThirdGift);
+    }
+
+    console.log("Ура! Скрипт підключено успішно!");
+    alert("Час обирати подарунок!");
+    alert("Вибирай без ліміту!");
+    
+    function scrollDown() {
+        window.scrollTo({top: window.innerHeight, behavior: 'smooth' });
+    }
+  </script>
+  <script src="gif.js"></script>
+</body>
+</html>

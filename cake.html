@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>З Днем Народження, Діано! 🎉</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0b0b0d;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px 15px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      /* Додаємо верхній відступ, щоб плашки мали місце для вискакування */
+      padding-top: 40px; 
+    }
+
+    /* Додатковий білий текст "To be continued 2027..." зверху */
+    .continued-text {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 11;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      white-space: nowrap;
+    }
+
+    .continued-text.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Спливаюче повідомлення */
+    .secret-toast {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px) scale(0.9);
+      background: linear-gradient(135deg, #ff4757, #ff6b81);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 10px 25px rgba(255, 71, 87, 0.5);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      z-index: 10;
+      max-width: 90vw;
+      word-wrap: break-word;
+    }
+
+    .secret-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    .secret-toast:hover {
+      transform: translateX(-50%) scale(1.05) translateY(0) !important;
+    }
+
+    /* Група верхніх смайликів */
+    .emoji-group {
+      display: none;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 45px;
+      margin-bottom: 25px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .emoji-group.visible {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .emoji-item {
+      font-size: 70px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      filter: drop-shadow(0 0 15px rgba(255, 71, 87, 0.3));
+    }
+
+    .emoji-item:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .emoji-item:active {
+      transform: scale(0.95);
+    }
+
+    /* Торт */
+    .cake-wrapper {
+      position: relative;
+      cursor: pointer;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .cake-wrapper:hover {
+      transform: scale(1.05);
+    }
+
+    .cake-icon {
+      font-size: 100px;
+      filter: drop-shadow(0 0 25px rgba(255, 71, 87, 0.4));
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .click-hint {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #ff4757;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      animation: bounce 1.5s infinite;
+    }
+
+    /* Блок привітання */
+    .greeting-box {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 30px 25px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      width: 100%;
+    }
+
+    .greeting-box.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .greeting-title {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #ff4757, #ff6b81, #ffa502);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    /* Збереження оригінального кольору для наліпок у заголовку */
+    .title-emoji {
+      -webkit-text-fill-color: initial;
+      display: inline-block;
+    }
+
+    .greeting-text {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .btn-card {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #ff4757, #ff6b81);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 71, 87, 0.6);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Оптимізація для мобільних пристроїв */
+    @media (max-width: 480px) {
+      .container {
+        padding-top: 50px;
+      }
+
+      .continued-text {
+        top: -15px;
+        font-size: 0.85rem;
+      }
+
+      .secret-toast {
+        top: 15px;
+        font-size: 0.95rem;
+        padding: 8px 16px;
+      }
+
+      .emoji-group {
+        gap: 15px;
+        margin-top: 35px;
+      }
+
+      .emoji-item {
+        font-size: 50px;
+      }
+
+      .cake-icon {
+        font-size: 85px;
+      }
+
+      .greeting-title {
+        font-size: 1.6rem;
+      }
+
+      .greeting-text {
+        font-size: 1rem;
+      }
+
+      .greeting-box {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Додатковий білий текст зверху -->
+    <div class="continued-text" id="continuedText">To be continued 2027...</div>
+
+    <!-- Спливаючий текст -->
+    <div class="secret-toast" id="secretToast">Ti amo Diana 💋❤️</div>
+
+    <!-- Верхні 3 смайлики (спочатку приховані) -->
+    <div class="emoji-group" id="emojiGroup">
+      <span class="emoji-item">🎉</span>
+      <span class="emoji-item">🎂</span>
+      <span class="emoji-item">✨</span>
+    </div>
+
+    <!-- Торт -->
+    <div class="cake-wrapper" id="cakeBtn">
+      <div class="cake-icon">🎂</div>
+      <div class="click-hint" id="hintText">Натисни на торт ✨</div>
+    </div>
+
+    <!-- Привітання та кнопка -->
+    <div class="greeting-box" id="greetingBox">
+      <h1 class="greeting-title">З 16-річчям, дорога Діано! <span class="title-emoji">✨</span><span class="title-emoji">❤️🎂❤️</span></h1>
+      <p class="greeting-text">
+        Нехай цей вік принесе тобі безліч яскравих моментів, щирих посмішок та здійснення найбажаніших мрій! 
+        Дякую, що ти є. Для тебе створено особливу відкритку з привітанням!
+      </p>
+      <a href="main.html" class="btn-card">Перейти до листівки 💌</a>
+    </div>
+
+  </div>
+
+  <script>
+    const cakeBtn = document.getElementById('cakeBtn');
+    const greetingBox = document.getElementById('greetingBox');
+    const hintText = document.getElementById('hintText');
+    const emojiGroup = document.getElementById('emojiGroup');
+    const emojis = document.querySelectorAll('.emoji-item');
+    const secretToast = document.getElementById('secretToast');
+    const continuedText = document.getElementById('continuedText');
+    let continuedTimeout;
+
+    // Дія при натисканні на торт
+    cakeBtn.addEventListener('click', () => {
+      greetingBox.classList.add('active');
+      hintText.style.display = 'none';
+      document.querySelector('.cake-icon').innerText = '';
+      emojiGroup.classList.add('visible');
+    });
+
+    // Клік на будь-який смайлик показує плашку
+    emojis.forEach(emoji => {
+      emoji.addEventListener('click', () => {
+        secretToast.classList.add('show');
+      });
+    });
+
+    // Ховати плашку при зсуві курсора або натисканні в іншому місці (для мобільних)
+    secretToast.addEventListener('mouseleave', () => {
+      secretToast.classList.remove('show');
+    });
+
+    document.addEventListener('touchstart', (e) => {
+      if (!secretToast.contains(e.target) && ![...emojis].some(el => el.contains(e.target))) {
+        secretToast.classList.remove('show');
+      }
+    });
+
+    // Клік на саму плашку запускає білий текст на 1 секунду
+    secretToast.addEventListener('click', () => {
+      continuedText.classList.add('show');
+      
+      clearTimeout(continuedTimeout);
+      continuedTimeout = setTimeout(() => {
+        continuedText.classList.remove('show');
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>
